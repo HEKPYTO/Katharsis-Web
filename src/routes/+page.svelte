@@ -157,7 +157,8 @@
 						Model Development
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Builds and trains models to deliver accurate, meaningful predictions for real-world problems
+						Builds and trains models to deliver accurate, meaningful predictions for real-world
+						problems
 					</p>
 				</div>
 
@@ -179,7 +180,8 @@
 						Data Analytics
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Skilled in Python, Spark, and Databricks to analyze large datasets and uncover actionable insights
+						Skilled in Python, Spark, and Databricks to analyze large datasets and uncover
+						actionable insights
 					</p>
 				</div>
 
@@ -201,7 +203,8 @@
 						Modern Stack
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Applies the latest tools and frameworks for scalable, reproducible data science workflows
+						Applies the latest tools and frameworks for scalable, reproducible data science
+						workflows
 					</p>
 				</div>
 
@@ -245,7 +248,8 @@
 						Analytical Thinking
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Breaks down problems using data exploration, feature engineering, and statistical reasoning
+						Breaks down problems using data exploration, feature engineering, and statistical
+						reasoning
 					</p>
 				</div>
 

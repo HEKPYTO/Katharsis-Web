@@ -4,8 +4,6 @@
 		IconBrandLinkedin,
 		IconBrandGithub,
 		IconMail,
-		IconBrandTwitter,
-		IconBrandDiscord,
 		IconExternalLink,
 		IconSend
 	} from '@tabler/icons-svelte';
@@ -44,7 +42,7 @@
 			icon: IconMail,
 			description: 'Direct communication for collaborations',
 			color: 'bg-red-500'
-		},
+		}
 	];
 
 	const handleSocialClick = (social: SocialLink): void => {
