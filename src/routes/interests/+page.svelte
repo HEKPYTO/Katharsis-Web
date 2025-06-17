@@ -19,12 +19,14 @@
 
 	const animeList: AnimeItem[] = [
 		{ title: 'Attack on Titan', genre: 'Action/Drama', rating: 98, status: 'Completed' },
-		{ title: 'Demon Slayer', genre: 'Action/Supernatural', rating: 95, status: 'Watching' },
-		{ title: 'Your Name', genre: 'Romance/Drama', rating: 97, status: 'Completed' },
+		{ title: 'Demon Slayer', genre: 'Action/Supernatural', rating: 95, status: 'Completed' },
+		{ title: 'Neon Genesis Evangelion', genre: 'Action/Drama', rating: 98, status: 'Completed' },
 		{ title: 'Spirited Away', genre: 'Adventure/Family', rating: 99, status: 'Completed' },
-		{ title: 'One Piece', genre: 'Adventure/Comedy', rating: 96, status: 'Watching' },
-		{ title: 'Jujutsu Kaisen', genre: 'Action/Supernatural', rating: 94, status: 'Completed' }
+		{ title: 'Weathering With You', genre: 'Adventure/Drama', rating: 80, status: 'Completed' },
+		{ title: 'Jujutsu Kaisen', genre: 'Action/Supernatural', rating: 94, status: 'Watching' }
 	];
+
+	const animeSort = [...animeList].sort((a, b) => b.rating - a.rating);
 </script>
 
 <svelte:head>
@@ -60,7 +62,7 @@
 				</div>
 
 				<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-					{#each animeList as anime (anime.title)}
+					{#each animeSort as anime (anime.title)}
 						<div class="sketch-card group transition-all duration-200 hover:shadow-lg">
 							<div class="space-y-4 p-6">
 								<div class="flex items-start justify-between">
@@ -125,7 +127,7 @@
 							</div>
 							<div class="flex-1">
 								<h3 class="text-foreground font-semibold">Processor</h3>
-								<p class="text-muted-foreground text-sm">AMD Ryzen 9 5900X</p>
+								<p class="text-muted-foreground text-sm">Intel Core i9-12900K</p>
 							</div>
 						</div>
 					</div>
@@ -137,7 +139,7 @@
 							</div>
 							<div class="flex-1">
 								<h3 class="text-foreground font-semibold">Graphics Card</h3>
-								<p class="text-muted-foreground text-sm">NVIDIA RTX 4080</p>
+								<p class="text-muted-foreground text-sm">NVIDIA RTX 3080ti</p>
 							</div>
 						</div>
 					</div>
@@ -149,7 +151,7 @@
 							</div>
 							<div class="flex-1">
 								<h3 class="text-foreground font-semibold">Memory</h3>
-								<p class="text-muted-foreground text-sm">32GB DDR4 3600MHz</p>
+								<p class="text-muted-foreground text-sm">32GB DDR5 6000MHz</p>
 							</div>
 						</div>
 					</div>
@@ -161,7 +163,7 @@
 							</div>
 							<div class="flex-1">
 								<h3 class="text-foreground font-semibold">Storage</h3>
-								<p class="text-muted-foreground text-sm">2TB NVMe SSD</p>
+								<p class="text-muted-foreground text-sm">2TB x 2 NVMe SSD</p>
 							</div>
 						</div>
 					</div>
@@ -173,7 +175,7 @@
 							</div>
 							<div class="flex-1">
 								<h3 class="text-foreground font-semibold">Monitor</h3>
-								<p class="text-muted-foreground text-sm">27" 4K 144Hz Display</p>
+								<p class="text-muted-foreground text-sm">32" 4K 240Hz Display</p>
 							</div>
 						</div>
 					</div>
@@ -185,7 +187,7 @@
 							</div>
 							<div class="flex-1">
 								<h3 class="text-foreground font-semibold">Keyboard</h3>
-								<p class="text-muted-foreground text-sm">Mechanical RGB</p>
+								<p class="text-muted-foreground text-sm">Corsair K70 RGB MK.2 Keyboard</p>
 							</div>
 						</div>
 					</div>

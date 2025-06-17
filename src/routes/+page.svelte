@@ -154,10 +154,10 @@
 					<h3
 						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 					>
-						Frontend Development
+						Model Development
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						React, Svelte, TypeScript, and modern CSS frameworks
+						Builds and trains models to deliver accurate, meaningful predictions for real-world problems
 					</p>
 				</div>
 
@@ -176,10 +176,10 @@
 					<h3
 						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 					>
-						UI/UX Design
+						Data Analytics
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Creating intuitive and beautiful user interfaces
+						Skilled in Python, Spark, and Databricks to analyze large datasets and uncover actionable insights
 					</p>
 				</div>
 
@@ -198,10 +198,10 @@
 					<h3
 						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 					>
-						Modern Tech
+						Modern Stack
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Using the latest technologies to build fast, reliable applications
+						Applies the latest tools and frameworks for scalable, reproducible data science workflows
 					</p>
 				</div>
 
@@ -220,10 +220,10 @@
 					<h3
 						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 					>
-						User Focus
+						Human-Centered Insights
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Every decision is made with the end user in mind
+						Translates complex data into intuitive insights to support decision-makers and end users
 					</p>
 				</div>
 
@@ -242,10 +242,10 @@
 					<h3
 						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 					>
-						Problem Solving
+						Analytical Thinking
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Breaking down complex challenges into manageable solutions
+						Breaks down problems using data exploration, feature engineering, and statistical reasoning
 					</p>
 				</div>
 
@@ -264,10 +264,10 @@
 					<h3
 						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 					>
-						Performance
+						Performance Optimization
 					</h3>
 					<p class="text-muted-foreground leading-relaxed">
-						Optimizing every aspect for speed and efficiency
+						Fine-tunes data pipelines and models for speed, efficiency, and scalability
 					</p>
 				</div>
 			</div>

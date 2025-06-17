@@ -28,40 +28,41 @@
 		about: () => [
 			'My Development Approach:',
 			'',
-			'I believe in writing clean, maintainable code that solves real problems.',
-			'Every project is an opportunity to learn and create something meaningful.',
-			'I focus on user experience, performance, and accessibility.'
+			'I believe in building data-driven solutions that are both insightful and actionable.',
+			'Every dataset is an opportunity to uncover patterns, generate value, and drive decisions.',
+			'I focus on model accuracy, interpretability, and the real-world impact of my analyses.'
 		],
 		skills: () => [
 			'Technical Skills:',
 			'',
-			'Frontend: React, Svelte, TypeScript, Next.js',
-			'Styling: Tailwind CSS, CSS-in-JS, SCSS',
-			'Backend: Node.js, Python, PostgreSQL',
-			'Tools: Git, Docker, Vite, Webpack',
-			'Design: Figma, Adobe Creative Suite'
+			'Languages: Python, R, SQL, Bash',
+			'Data Analysis: Pandas, NumPy, Excel, Spark',
+			'Machine Learning: scikit-learn, XGBoost, TensorFlow, PyTorch',
+			'Data Visualization: Matplotlib, Seaborn, Plotly, Tableau',
+			'Tools: Git, Docker, Databricks, Jupyter, Airflow',
+			'Databases: PostgreSQL, MySQL, MongoDB, BigQuery'
 		],
 		philosophy: () => [
-			'Coding Philosophy:',
+			'Data Science Philosophy:',
 			'',
-			'1. Code should be readable by humans first',
-			'2. Optimize for maintainability over cleverness',
-			'3. Test early, test often',
-			'4. User experience is paramount',
-			'5. Continuous learning is essential'
+			'1. Start with the right questions, not just the data',
+			'2. Clarity and reproducibility over complexity',
+			'3. Validate assumptions and test models rigorously',
+			'4. Communicate insights clearly to all stakeholders',
+			'5. Keep learning — tools evolve, but thinking critically is timeless'
 		],
 		tools: () => [
 			'Development Tools:',
 			'',
-			'Editor: VS Code with Vim keybindings',
+			'Editor: VS Code, JupyterLab, PyCharm',
 			'Terminal: iTerm2 with Oh My Zsh',
-			'Version Control: Git with GitHub',
-			'Package Manager: pnpm',
-			'Browser: Chrome DevTools',
-			'Design: Figma, Sketch'
+			'Version Control: Git with GitHub/GitLab',
+			'Environments: Conda, venv, Docker',
+			'Notebook: Jupyter, Google Colab',
+			'Visualization: Tableau, Power BI, Plotly'
 		],
 		whoami: () => [
-			'Creative Developer & Problem Solver',
+			'Data Scientist & Problem Solver',
 			'',
 			"I'm passionate about building digital experiences that make a difference.",
 			"When I'm not coding, you'll find me watching anime or optimizing my setup.",

@@ -32,35 +32,19 @@
 		{
 			name: 'LinkedIn',
 			username: 'Connect with me',
-			url: 'https://linkedin.com/in/your-profile',
+			url: 'https://www.linkedin.com/in/kathayut-kannasoot-b7380a298/',
 			icon: IconBrandLinkedin,
 			description: 'Professional networking and career updates',
 			color: 'bg-blue-600'
 		},
 		{
 			name: 'Email',
-			username: 'your.email@example.com',
-			url: 'mailto:your.email@example.com',
+			username: 'kathayutkannasoot@gmail.com',
+			url: 'mailto:kathayutkannasoot@gmail.com',
 			icon: IconMail,
 			description: 'Direct communication for collaborations',
 			color: 'bg-red-500'
 		},
-		{
-			name: 'Twitter',
-			username: '@your_handle',
-			url: 'https://twitter.com/your_handle',
-			icon: IconBrandTwitter,
-			description: 'Tech thoughts and project updates',
-			color: 'bg-sky-500'
-		},
-		{
-			name: 'Discord',
-			username: 'your_username#1234',
-			url: '#',
-			icon: IconBrandDiscord,
-			description: 'Gaming and community discussions',
-			color: 'bg-indigo-600'
-		}
 	];
 
 	const handleSocialClick = (social: SocialLink): void => {

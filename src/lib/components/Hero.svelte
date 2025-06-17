@@ -22,8 +22,7 @@
 
 					<h1 class="heading-xl text-foreground animate-slide-up text-balance">
 						Developers,<br />
-						welcome<br />
-						home.
+						welcome.<br />
 					</h1>
 				</div>
 			</div>
@@ -34,7 +33,7 @@
 					<p
 						class="text-muted-foreground animate-slide-up-delayed text-lg leading-relaxed text-balance"
 					>
-						I'm a creative developer who builds digital experiences that put the focus on you and
+						I'm a data scientist who interest in analyzing big data that put the focus on you and
 						your users. Welcome to my corner of the internet where I share my projects and journey.
 					</p>
 
