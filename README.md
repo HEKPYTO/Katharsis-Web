@@ -1,4 +1,4 @@
-# Karthasis (Portfolio Website)
+# Kathasis (Portfolio Website)
 
 A modern, minimalistic portfolio website built with SvelteKit, featuring dynamic GitHub integration, interactive terminal, and responsive design.
 
