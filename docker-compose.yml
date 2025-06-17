@@ -9,7 +9,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.katharsis.entrypoints=websecure
-      - traefik.http.routers.katharsis.rule=Host(`katharsis.home.tsunyanapat.com`)
+      - traefik.http.routers.katharsis.rule=Host(`katharsis.home.tsunyanapat.com`) || Host(`kathayut.tsunyanapat.com`)
       - traefik.http.routers.katharsis.tls=true
       - traefik.http.routers.katharsis.tls.certresolver=cloudflare
       - traefik.http.services.katharsis.loadbalancer.server.port=4173
