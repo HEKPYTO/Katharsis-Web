@@ -7,19 +7,18 @@
 </script>
 
 <svelte:head>
-	<title>Personal Portfolio - Developer & Tech Enthusiast</title>
+	<title>Kathayut Kannasoot</title>
 	<meta
 		name="description"
-		content="Personal website of a passionate developer showcasing projects, interests, and professional journey"
+		content="Personal website of a passionate data scientist showcasing projects, interests, and professional journey"
 	/>
-	<meta name="keywords" content="developer, portfolio, projects, anime, technology" />
+	<meta name="keywords" content="data scientist, portfolio, projects, anime, technology" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Personal Portfolio - Developer & Tech Enthusiast" />
+	<meta property="og:title" content="Personal Portfolio - Data Scientist" />
 	<meta
 		property="og:description"
-		content="Explore my journey as a developer, discover my projects, and learn about my interests in technology and anime."
+		content="Explore my journey as a data Scientist, discover my projects, and learn about my interests in technology and anime."
 	/>
-	<meta name="twitter:card" content="summary_large_image" />
 
 	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com" />

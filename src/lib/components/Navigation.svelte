@@ -51,7 +51,7 @@
 				/>
 				<span
 					class="text-foreground group-hover:text-primary font-sans text-lg font-semibold transition-colors duration-500"
-					>Portfolio</span
+					>Kathayut Kannasoot</span
 				>
 			</a>
 
