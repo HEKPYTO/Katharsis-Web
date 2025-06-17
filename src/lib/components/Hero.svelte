@@ -33,8 +33,8 @@
 					<p
 						class="text-muted-foreground animate-slide-up-delayed text-lg leading-relaxed text-balance"
 					>
-						I am Jda Kathayut, interests in analyzing big data that put the focus on you and
-						your users. Welcome to my corner of the internet where I share my projects and journey.
+						I am Jda Kathayut, interests in analyzing big data that put the focus on you and your
+						users. Welcome to my corner of the internet where I share my projects and journey.
 					</p>
 
 					<div class="space-y-4">
