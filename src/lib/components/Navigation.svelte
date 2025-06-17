@@ -43,7 +43,7 @@
 	class="bg-background/80 border-border animate-slide-down sticky top-0 z-50 w-full border-b backdrop-blur-lg"
 >
 	<div class="container-sketch">
-		<div class="flex h-16 items-center justify-between">
+		<div class="relative flex h-16 items-center">
 			<!-- Logo -->
 			<a href="/" class="group animate-fade-in flex items-center space-x-2">
 				<IconDiamond
@@ -56,7 +56,9 @@
 			</a>
 
 			<!-- Desktop Navigation -->
-			<div class="animate-fade-in-delayed hidden items-center space-x-8 md:flex">
+			<div
+				class="animate-fade-in-delayed absolute left-1/2 hidden -translate-x-1/2 transform items-center space-x-8 md:flex"
+			>
 				{#each navItems as item, index (item.href)}
 					<a
 						href={item.href}
@@ -77,55 +79,58 @@
 				{/each}
 			</div>
 
-			<!-- Desktop Theme Toggle -->
-			<div class="animate-fade-in-delayed hidden md:block">
+			<!-- Right-side controls container -->
+			<div class="ml-auto flex items-center space-x-2">
+				<!-- Desktop Theme Toggle -->
+				<div class="animate-fade-in-delayed hidden md:block">
+					<Button
+						variant="ghost"
+						size="icon"
+						onclick={toggleMode}
+						class="hover:bg-accent/50 relative overflow-hidden transition-all duration-500 hover:scale-110"
+					>
+						<div class="relative h-[1.2rem] w-[1.2rem]">
+							{#if isDark}
+								<IconMoon
+									class="absolute h-[1.2rem] w-[1.2rem] scale-100 rotate-0 opacity-100 transition-all duration-700"
+								/>
+								<IconSun
+									class="absolute h-[1.2rem] w-[1.2rem] scale-0 -rotate-90 opacity-0 transition-all duration-700"
+								/>
+							{:else}
+								<IconSun
+									class="absolute h-[1.2rem] w-[1.2rem] scale-100 rotate-0 opacity-100 transition-all duration-700"
+								/>
+								<IconMoon
+									class="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 opacity-0 transition-all duration-700"
+								/>
+							{/if}
+						</div>
+						<span class="sr-only">Toggle theme</span>
+					</Button>
+				</div>
+
+				<!-- Mobile menu button -->
 				<Button
 					variant="ghost"
 					size="icon"
-					onclick={toggleMode}
-					class="hover:bg-accent/50 relative overflow-hidden transition-all duration-500 hover:scale-110"
+					class="hover:bg-accent/50 transition-all duration-500 hover:scale-110 md:hidden"
+					onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
 				>
-					<div class="relative h-[1.2rem] w-[1.2rem]">
-						{#if isDark}
-							<IconMoon
-								class="absolute h-[1.2rem] w-[1.2rem] scale-100 rotate-0 opacity-100 transition-all duration-700"
-							/>
-							<IconSun
-								class="absolute h-[1.2rem] w-[1.2rem] scale-0 -rotate-90 opacity-0 transition-all duration-700"
-							/>
-						{:else}
-							<IconSun
-								class="absolute h-[1.2rem] w-[1.2rem] scale-100 rotate-0 opacity-100 transition-all duration-700"
-							/>
-							<IconMoon
-								class="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 opacity-0 transition-all duration-700"
-							/>
-						{/if}
+					<div class="relative h-5 w-5">
+						<IconMenu2
+							class="absolute h-5 w-5 transition-all duration-500 {mobileMenuOpen
+								? 'rotate-90 opacity-0'
+								: 'rotate-0 opacity-100'}"
+						/>
+						<IconX
+							class="absolute h-5 w-5 transition-all duration-500 {mobileMenuOpen
+								? 'rotate-0 opacity-100'
+								: '-rotate-90 opacity-0'}"
+						/>
 					</div>
-					<span class="sr-only">Toggle theme</span>
 				</Button>
 			</div>
-
-			<!-- Mobile menu button -->
-			<Button
-				variant="ghost"
-				size="icon"
-				class="hover:bg-accent/50 transition-all duration-500 hover:scale-110 md:hidden"
-				onclick={() => (mobileMenuOpen = !mobileMenuOpen)}
-			>
-				<div class="relative h-5 w-5">
-					<IconMenu2
-						class="absolute h-5 w-5 transition-all duration-500 {mobileMenuOpen
-							? 'rotate-90 opacity-0'
-							: 'rotate-0 opacity-100'}"
-					/>
-					<IconX
-						class="absolute h-5 w-5 transition-all duration-500 {mobileMenuOpen
-							? 'rotate-0 opacity-100'
-							: '-rotate-90 opacity-0'}"
-					/>
-				</div>
-			</Button>
 		</div>
 
 		<!-- Mobile Navigation -->
