@@ -182,26 +182,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- Quick Stats -->
-			<div class="grid grid-cols-2 gap-6 md:grid-cols-4">
-				<div class="space-y-2 text-center">
-					<div class="text-foreground text-3xl font-bold">24h</div>
-					<div class="text-muted-foreground text-sm">Response Time</div>
-				</div>
-				<div class="space-y-2 text-center">
-					<div class="text-foreground text-3xl font-bold">100%</div>
-					<div class="text-muted-foreground text-sm">Professional</div>
-				</div>
-				<div class="space-y-2 text-center">
-					<div class="text-foreground text-3xl font-bold">∞</div>
-					<div class="text-muted-foreground text-sm">Enthusiasm</div>
-				</div>
-				<div class="space-y-2 text-center">
-					<div class="text-foreground text-3xl font-bold">5+</div>
-					<div class="text-muted-foreground text-sm">Platforms</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
