@@ -1,0 +1,376 @@
+@import 'tailwindcss';
+
+@theme {
+	--font-family-serif: 'Crimson Text', 'Times New Roman', serif;
+	--font-family-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-family-mono: 'JetBrains Mono', monospace;
+
+	/* Light mode colors */
+	--color-background: 255 255 255;
+	--color-foreground: 23 23 23;
+	--color-card: 255 255 255;
+	--color-card-foreground: 23 23 23;
+	--color-muted: 248 250 252;
+	--color-muted-foreground: 100 116 139;
+	--color-border: 226 232 240;
+	--color-primary: 147 51 234;
+	--color-primary-foreground: 255 255 255;
+	--color-secondary: 241 245 249;
+	--color-secondary-foreground: 15 23 42;
+	--color-accent: 241 245 249;
+	--color-accent-foreground: 15 23 42;
+	--color-destructive: 239 68 68;
+	--color-destructive-foreground: 248 250 252;
+	--color-ring: 147 51 234;
+	--color-input: 226 232 240;
+
+	--radius: 16px;
+	--shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+	--shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+	--shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+	--shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+	--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Dark mode colors with high contrast */
+.dark {
+	--color-background: 2 6 23;
+	--color-foreground: 248 250 252;
+	--color-card: 15 23 42;
+	--color-card-foreground: 248 250 252;
+	--color-muted: 30 41 59;
+	--color-muted-foreground: 148 163 184;
+	--color-border: 30 41 59;
+	--color-primary: 168 85 247;
+	--color-primary-foreground: 15 23 42;
+	--color-secondary: 30 41 59;
+	--color-secondary-foreground: 248 250 252;
+	--color-accent: 30 41 59;
+	--color-accent-foreground: 248 250 252;
+	--color-destructive: 220 38 38;
+	--color-destructive-foreground: 248 250 252;
+	--color-ring: 168 85 247;
+	--color-input: 30 41 59;
+}
+
+html,
+body {
+	@apply antialiased;
+	font-feature-settings:
+		'rlig' 1,
+		'calt' 1;
+}
+
+/* Typography */
+.font-serif {
+	font-family: var(--font-family-serif);
+}
+
+.font-sans {
+	font-family: var(--font-family-sans);
+}
+
+/* Headings */
+.heading-xl {
+	@apply font-serif text-5xl leading-tight font-normal tracking-tight md:text-6xl lg:text-7xl;
+}
+
+.heading-lg {
+	@apply font-serif text-4xl leading-tight font-normal tracking-tight md:text-5xl;
+}
+
+.heading-md {
+	@apply font-serif text-3xl leading-tight font-normal tracking-tight md:text-4xl;
+}
+
+.heading-sm {
+	@apply font-serif text-2xl leading-tight font-normal tracking-tight md:text-3xl;
+}
+
+/* Sketch.com inspired backgrounds */
+.bg-sketch-hero {
+	background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 50%, #e0e7ff 100%);
+}
+
+.dark .bg-sketch-hero {
+	background: linear-gradient(135deg, #581c87 0%, #7c2d12 50%, #1e1b4b 100%);
+}
+
+.bg-sketch-purple {
+	background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+}
+
+.bg-sketch-blue {
+	background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+}
+
+.bg-sketch-pink {
+	background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
+}
+
+.bg-sketch-green {
+	background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
+}
+
+.bg-sketch-orange {
+	background: linear-gradient(135deg, #f97316 0%, #a855f7 100%);
+}
+
+.bg-sketch-dark {
+	background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+}
+
+.bg-sketch-cyan {
+	background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+}
+
+/* Cards with proper dark mode support */
+.sketch-card {
+	@apply bg-card text-card-foreground border-border overflow-hidden rounded-2xl border shadow-sm transition-all duration-500 hover:shadow-lg;
+}
+
+.sketch-card-feature {
+	@apply overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl;
+}
+
+/* Layout utilities */
+.container-sketch {
+	@apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.section-spacing {
+	@apply py-16 md:py-24 lg:py-32;
+}
+
+/* Text styles */
+.text-balance {
+	text-wrap: balance;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+}
+
+/* Badge styles with proper dark mode */
+.sketch-badge {
+	@apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+}
+
+.sketch-badge-new {
+	@apply bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300;
+}
+
+.sketch-badge-prototype {
+	@apply bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300;
+}
+
+.sketch-badge-collaborate {
+	@apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
+}
+
+/* Hide scrollbar */
+.scrollbar-hide {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+	display: none;
+}
+
+/* Hide default input cursor */
+.caret-transparent {
+	caret-color: transparent;
+}
+
+/* Selection color - pastel purple */
+::selection {
+	background-color: rgb(196 181 253 / 0.3);
+	color: rgb(88 28 135);
+}
+
+.dark ::selection {
+	background-color: rgb(139 92 246 / 0.3);
+	color: rgb(233 213 255);
+}
+
+/* Custom Animations - SLOWED DOWN */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(24px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translateY(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes bounceGentle {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-4px);
+	}
+}
+
+@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Animation Classes - SLOWED DOWN */
+.animate-fade-in-up {
+	animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.animate-fade-in {
+	animation: fadeIn 1.5s ease-out forwards;
+}
+
+.animate-fade-in-delayed {
+	animation: fadeIn 1.5s ease-out 0.4s both;
+}
+
+.animate-fade-in-delayed-2 {
+	animation: fadeIn 1.5s ease-out 0.8s both;
+}
+
+.animate-slide-up {
+	animation: slideUp 1.2s ease-out forwards;
+}
+
+.animate-slide-up-delayed {
+	animation: slideUp 1.2s ease-out 0.6s both;
+}
+
+.animate-slide-down {
+	animation: slideDown 1s ease-out forwards;
+}
+
+.animate-fade-in-up-delayed {
+	animation: fadeInUp 1.2s ease-out 0.8s both;
+}
+
+.animate-bounce-gentle {
+	animation: bounceGentle 3s ease-in-out infinite;
+}
+
+.animate-gradient-border {
+	background-size: 200% 200%;
+	animation: gradientShift 5s ease infinite;
+}
+
+/* Hover Effects - SLOWED DOWN */
+.hover-lift {
+	transition: transform 0.5s ease-out;
+}
+
+.hover-lift:hover {
+	transform: translateY(-2px);
+}
+
+.hover-scale {
+	transition: transform 0.5s ease-out;
+}
+
+.hover-scale:hover {
+	transform: scale(1.05);
+}
+
+/* Smooth transitions for theme switching - SLOWED DOWN */
+* {
+	transition-property: background-color, border-color, color, fill, stroke;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 500ms;
+}
+
+/* Stagger animations for lists - SLOWED DOWN */
+.stagger-animation > * {
+	animation: fadeInUp 1.2s ease-out forwards;
+}
+
+.stagger-animation > *:nth-child(1) {
+	animation-delay: 0ms;
+}
+.stagger-animation > *:nth-child(2) {
+	animation-delay: 200ms;
+}
+.stagger-animation > *:nth-child(3) {
+	animation-delay: 400ms;
+}
+.stagger-animation > *:nth-child(4) {
+	animation-delay: 600ms;
+}
+.stagger-animation > *:nth-child(5) {
+	animation-delay: 800ms;
+}
+.stagger-animation > *:nth-child(6) {
+	animation-delay: 1000ms;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
