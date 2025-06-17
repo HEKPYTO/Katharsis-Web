@@ -33,7 +33,7 @@
 </script>
 
 <svelte:head>
-	<title>Creative Developer Portfolio</title>
+	<title>Kathayut Portfolio</title>
 	<meta
 		name="description"
 		content="Personal portfolio showcasing creative development work and projects."

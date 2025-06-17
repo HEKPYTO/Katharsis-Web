@@ -30,7 +30,7 @@
 </script>
 
 <svelte:head>
-	<title>About - Creative Developer Portfolio</title>
+	<title>About - Kathayut Portfolio</title>
 	<meta
 		name="description"
 		content="Learn about my interests in anime and technology, plus my development setup."

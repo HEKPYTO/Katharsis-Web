@@ -60,7 +60,7 @@
 </script>
 
 <svelte:head>
-	<title>Contact - Creative Developer Portfolio</title>
+	<title>Contact - Kathayut Portfolio</title>
 	<meta
 		name="description"
 		content="Get in touch with me for collaborations, projects, or just to say hello."
