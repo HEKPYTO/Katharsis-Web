@@ -12,7 +12,10 @@
 		name="description"
 		content="Personal website of a passionate data scientist showcasing projects, interests, and professional journey"
 	/>
-	<meta name="keywords" content="data scientist, portfolio, projects, anime, technology" />
+	<meta
+		name="keywords"
+		content="Jda, JDA, Kathayut, Kathayut Kannasoot, data scientist, portfolio, projects, anime, technology"
+	/>
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Personal Portfolio - Data Scientist" />
 	<meta
