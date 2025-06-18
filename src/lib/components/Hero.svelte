@@ -1,5 +1,5 @@
 <script lang="ts">
-	// import Button from '$lib/components/ui/button.svelte';
+	import Button from '$lib/components/ui/button.svelte';
 	import { IconArrowDown, IconSparkles } from '@tabler/icons-svelte';
 
 	const scrollToProjects = () => {
@@ -41,24 +41,13 @@
 						<div
 							class="animate-fade-in-delayed group inline-flex rounded-full bg-gradient-to-r from-purple-300 via-pink-300 to-orange-300 p-1"
 						>
-							<button
-								on:click={scrollToProjects}
-								class="
-								inline-flex items-center space-x-2
-								rounded-full bg-black
-								px-6
-								py-1.5 text-white
-								shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all
-								duration-150
-								hover:translate-y-[0.5px]
-								hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)]
-								focus:outline-none
-								active:translate-y-[0.75px]
-								"
+							<Button
+								onclick={scrollToProjects}
+								class="inline-flex items-center space-x-2 rounded-full bg-black px-6 py-1.5 text-white shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all duration-150 hover:translate-y-[0.5px] hover:bg-black hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)] focus:outline-none active:translate-y-[0.75px]"
 							>
 								<span>Explore my work</span>
 								<IconArrowDown class="h-4 w-4" />
-							</button>
+							</Button>
 						</div>
 
 						<p class="text-muted-foreground animate-fade-in-delayed-2 text-sm">

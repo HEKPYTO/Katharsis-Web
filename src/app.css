@@ -32,7 +32,6 @@
 	--shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-/* Dark mode colors with high contrast */
 .dark {
 	--color-background: 2 6 23;
 	--color-foreground: 248 250 252;
@@ -96,41 +95,13 @@ body {
 	background: linear-gradient(135deg, #581c87 0%, #7c2d12 50%, #1e1b4b 100%);
 }
 
-.bg-sketch-purple {
-	background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-}
-
-.bg-sketch-blue {
-	background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
-}
-
-.bg-sketch-pink {
-	background: linear-gradient(135deg, #ec4899 0%, #f97316 100%);
-}
-
-.bg-sketch-green {
-	background: linear-gradient(135deg, #10b981 0%, #8b5cf6 100%);
-}
-
-.bg-sketch-orange {
-	background: linear-gradient(135deg, #f97316 0%, #a855f7 100%);
-}
-
-.bg-sketch-dark {
-	background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-}
-
-.bg-sketch-cyan {
-	background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
-}
-
 /* Cards with proper dark mode support */
 .sketch-card {
-	@apply bg-card text-card-foreground border-border overflow-hidden rounded-2xl border shadow-sm transition-all duration-500 hover:shadow-lg;
+	@apply bg-card text-card-foreground overflow-hidden rounded-2xl border shadow-sm transition-all hover:shadow-lg;
 }
 
 .sketch-card-feature {
-	@apply overflow-hidden rounded-2xl shadow-lg transition-all duration-500 hover:shadow-xl;
+	@apply overflow-hidden rounded-2xl shadow-lg transition-all hover:shadow-xl;
 }
 
 /* Layout utilities */
@@ -305,10 +276,6 @@ body {
 
 .animate-fade-in-up-delayed {
 	animation: fadeInUp 1.2s ease-out 0.8s both;
-}
-
-.animate-bounce-gentle {
-	animation: bounceGentle 3s ease-in-out infinite;
 }
 
 .animate-gradient-border {

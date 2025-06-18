@@ -42,7 +42,6 @@
 
 <Hero />
 
-<!-- Interactive Terminal Section -->
 <section class="section-spacing bg-background">
 	<div class="container-sketch">
 		<div class="space-y-12">
@@ -61,7 +60,6 @@
 	</div>
 </section>
 
-<!-- My projects section -->
 <section class="section-spacing bg-muted/30">
 	<div class="container-sketch">
 		<div class="space-y-12">
@@ -74,7 +72,6 @@
 				</p>
 			</div>
 
-			<!-- Projects showcase -->
 			<div id="featured-work" class="space-y-8">
 				<div class="animate-fade-in-delayed text-center">
 					<h3 class="heading-md text-foreground mb-4">Featured Projects</h3>
@@ -84,18 +81,13 @@
 				</div>
 
 				{#if loading}
-					<div class="stagger-animation grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-						{#each Array(6) as _, index (index)}
-							<div class="sketch-card animate-pulse p-6">
-								<div
-									class="-m-6 mb-4 h-20 rounded-t-2xl bg-gradient-to-r from-purple-400 to-pink-400"
-								></div>
-								<div class="space-y-3">
-									<div class="bg-muted h-4 rounded"></div>
-									<div class="bg-muted h-3 w-2/3 rounded"></div>
-								</div>
-							</div>
-						{/each}
+					<div class="py-8 text-center">
+						<div class="text-muted-foreground inline-flex items-center space-x-2">
+							<div
+								class="h-5 w-5 animate-spin rounded-full border-2 border-current border-t-transparent"
+							></div>
+							<span>Loading featured projects...</span>
+						</div>
 					</div>
 				{:else if projects.length > 0}
 					<div class="stagger-animation grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -105,7 +97,7 @@
 					</div>
 				{:else}
 					<div class="sketch-card animate-fade-in p-12 text-center">
-						<p class="text-muted-foreground">Loading projects...</p>
+						<p class="text-muted-foreground">No projects available at the moment.</p>
 					</div>
 				{/if}
 
@@ -126,7 +118,6 @@
 	</div>
 </section>
 
-<!-- Skills & Interests Section -->
 <section class="section-spacing bg-background">
 	<div class="container-sketch">
 		<div class="space-y-12">
@@ -279,7 +270,6 @@
 	</div>
 </section>
 
-<!-- Personal CTA Section -->
 <section class="section-spacing bg-sketch-hero">
 	<div class="container-sketch">
 		<div class="animate-fade-in mx-auto max-w-3xl space-y-8 text-center">

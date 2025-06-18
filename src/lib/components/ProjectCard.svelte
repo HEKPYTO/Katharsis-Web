@@ -2,109 +2,181 @@
 	import Button from '$lib/components/ui/button.svelte';
 	import { IconStar, IconGitFork, IconExternalLink, IconBrandGithub } from '@tabler/icons-svelte';
 	import type { GitHubRepository } from '$lib/api/github';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		project: GitHubRepository;
 	}
 
 	let { project }: Props = $props();
+	let isVisible = $state(false);
+	let cardElement: HTMLDivElement;
 
-	const colors = [
-		'bg-sketch-purple',
-		'bg-sketch-blue',
-		'bg-sketch-pink',
-		'bg-sketch-green',
-		'bg-sketch-orange',
-		'bg-sketch-cyan'
+	const colorSchemes = [
+		{
+			light: { bg: 'bg-slate-50', accent: 'bg-slate-600', text: 'text-slate-700' },
+			dark: { bg: 'dark:bg-slate-800/50', accent: 'dark:bg-slate-400', text: 'dark:text-slate-300' }
+		},
+		{
+			light: { bg: 'bg-blue-50', accent: 'bg-blue-600', text: 'text-blue-700' },
+			dark: { bg: 'dark:bg-blue-900/30', accent: 'dark:bg-blue-400', text: 'dark:text-blue-300' }
+		},
+		{
+			light: { bg: 'bg-purple-50', accent: 'bg-purple-600', text: 'text-purple-700' },
+			dark: {
+				bg: 'dark:bg-purple-900/30',
+				accent: 'dark:bg-purple-400',
+				text: 'dark:text-purple-300'
+			}
+		},
+		{
+			light: { bg: 'bg-emerald-50', accent: 'bg-emerald-600', text: 'text-emerald-700' },
+			dark: {
+				bg: 'dark:bg-emerald-900/30',
+				accent: 'dark:bg-emerald-400',
+				text: 'dark:text-emerald-300'
+			}
+		},
+		{
+			light: { bg: 'bg-orange-50', accent: 'bg-orange-600', text: 'text-orange-700' },
+			dark: {
+				bg: 'dark:bg-orange-900/30',
+				accent: 'dark:bg-orange-400',
+				text: 'dark:text-orange-300'
+			}
+		},
+		{
+			light: { bg: 'bg-pink-50', accent: 'bg-pink-600', text: 'text-pink-700' },
+			dark: { bg: 'dark:bg-pink-900/30', accent: 'dark:bg-pink-400', text: 'dark:text-pink-300' }
+		}
 	];
 
-	const randomColor = colors[Math.floor(Math.random() * colors.length)];
+	const selectedScheme = colorSchemes[Math.floor(Math.random() * colorSchemes.length)];
+
+	onMount(() => {
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						isVisible = true;
+						observer.unobserve(entry.target);
+					}
+				});
+			},
+			{
+				threshold: 0.1,
+				rootMargin: '50px'
+			}
+		);
+
+		if (cardElement) {
+			observer.observe(cardElement);
+		}
+
+		return () => {
+			if (cardElement) {
+				observer.unobserve(cardElement);
+			}
+		};
+	});
 </script>
 
-<div class="sketch-card group flex h-full flex-col border shadow-2xl transition-all duration-700">
-	<!-- Colorful header -->
-	<div
-		class="{randomColor} relative overflow-hidden p-6 text-white transition-all duration-700 group-hover:brightness-110"
-	>
-		<div class="relative z-10">
+<div
+	bind:this={cardElement}
+	class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/60 bg-white shadow-sm transition-all duration-300 hover:border-gray-300/80 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800 dark:shadow-lg dark:hover:border-gray-600/80 dark:hover:shadow-xl {!isVisible
+		? 'opacity-0'
+		: 'opacity-100'}"
+	style="transition: opacity 0.6s ease-out;"
+>
+	{#if isVisible}
+		<div
+			class="{selectedScheme.light.bg} {selectedScheme.dark
+				.bg} relative px-6 pt-6 pb-4 dark:border-b dark:border-gray-700/30"
+		>
 			<div class="mb-3 flex items-start justify-between">
-				<h3 class="pr-4 text-lg leading-tight font-semibold">{project.name}</h3>
-				<div class="flex flex-shrink-0 items-center space-x-3 text-sm text-white/80">
-					<div class="flex items-center space-x-1 transition-all duration-500 hover:scale-110">
-						<IconStar class="h-4 w-4 transition-all duration-500 hover:text-yellow-300" />
-						<span>{project.stargazers_count}</span>
+				<div class="min-w-0 flex-1">
+					<h3 class="truncate text-lg leading-tight font-semibold text-gray-900 dark:text-gray-100">
+						{project.name}
+					</h3>
+					{#if project.language}
+						<div class="mt-2 flex items-center space-x-2">
+							<div
+								class="{selectedScheme.light.accent} {selectedScheme.dark
+									.accent} h-2 w-2 rounded-full"
+							></div>
+							<span
+								class="{selectedScheme.light.text} {selectedScheme.dark.text} text-sm font-medium"
+							>
+								{project.language}
+							</span>
+						</div>
+					{/if}
+				</div>
+				<div class="ml-4 flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+					<div class="flex items-center space-x-1">
+						<IconStar class="h-3.5 w-3.5" />
+						<span class="font-medium">{project.stargazers_count}</span>
 					</div>
-					<div class="flex items-center space-x-1 transition-all duration-500 hover:scale-110">
-						<IconGitFork class="h-4 w-4 transition-all duration-500 hover:text-blue-300" />
-						<span>{project.forks_count}</span>
+					<div class="flex items-center space-x-1">
+						<IconGitFork class="h-3.5 w-3.5" />
+						<span class="font-medium">{project.forks_count}</span>
 					</div>
 				</div>
 			</div>
-			<p
-				class="line-clamp-2 text-sm leading-relaxed text-white/90 transition-all duration-500 group-hover:text-white"
-			>
+
+			<p class="line-clamp-2 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
 				{project.description ||
-					'A creative coding project showcasing modern development practices.'}
+					'A focused project built with modern development practices and clean architecture.'}
 			</p>
 		</div>
-		<div
-			class="absolute inset-0 bg-gradient-to-br from-transparent to-black/10 transition-opacity duration-700 group-hover:opacity-50"
-		></div>
-	</div>
 
-	<!-- White content area -->
-	<div
-		class="dark:bg-card dark:group-hover:bg-card/80 flex flex-1 flex-col space-y-4 bg-white p-6 transition-all duration-700 group-hover:bg-gray-50"
-	>
-		<!-- Language and Topics -->
-		<div class="flex-1 space-y-3">
-			{#if project.language}
-				<div class="flex items-center space-x-2">
-					<div
-						class="h-3 w-3 rounded-full bg-gray-400 transition-all duration-500 hover:scale-125"
-					></div>
-					<span class="dark:text-card-foreground text-sm font-medium text-gray-700"
-						>{project.language}</span
-					>
-				</div>
-			{/if}
-
+		<div class="flex flex-1 flex-col bg-white px-6 py-5 dark:bg-gray-800">
 			{#if project.topics && project.topics.length > 0}
-				<div class="flex flex-wrap gap-2">
-					{#each project.topics.slice(0, 3) as topic, index (topic)}
+				<div class="mb-5 flex flex-wrap gap-2">
+					{#each project.topics.slice(0, 3) as topic (topic)}
 						<span
-							class="dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted/80 rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-all duration-500 hover:scale-105 hover:bg-gray-200"
-							style="animation-delay: {index * 100}ms"
+							class="inline-flex items-center rounded-md border border-gray-200 bg-gray-100 px-2.5 py-1 text-xs font-medium text-gray-700 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300"
 						>
 							{topic}
 						</span>
 					{/each}
 				</div>
 			{/if}
-		</div>
 
-		<!-- Actions -->
-		<div class="flex space-x-3 pt-2">
-			<Button
-				class="dark:bg-foreground dark:text-background dark:hover:bg-foreground/90 flex-1 rounded-full bg-black px-4 py-2 text-sm font-medium text-white transition-all duration-500 hover:scale-102 hover:bg-gray-800 hover:shadow-lg"
-				onclick={() => window.open(project.html_url, '_blank')}
-			>
-				<IconBrandGithub
-					class="mr-2 h-4 w-4 transition-transform duration-500 group-hover:rotate-12"
-				/>
-				Code
-			</Button>
-			{#if project.homepage}
-				<Button
-					class="dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted/80 rounded-full bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-500 hover:scale-102 hover:bg-gray-200 hover:shadow-lg"
-					onclick={() => project.homepage && window.open(project.homepage, '_blank')}
-				>
-					<IconExternalLink
-						class="mr-2 h-4 w-4 transition-transform duration-500 hover:rotate-12"
-					/>
-					Live
-				</Button>
-			{/if}
+			<div class="mt-auto">
+				<div class="flex space-x-3">
+					<Button
+						class="flex-1 justify-center rounded-lg border border-gray-900 bg-gray-900 px-4 py-2.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),_0_2px_4px_rgba(0,0,0,0.2)] transition-all transition-all duration-200 duration-200 hover:translate-y-[1px] hover:bg-gray-800 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),_0_1px_2px_rgba(0,0,0,0.15)] focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none focus:outline-none active:translate-y-[2px] dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus:ring-gray-100 dark:focus:ring-offset-gray-800"
+						onclick={() => window.open(project.html_url, '_blank')}
+					>
+						<IconBrandGithub
+							class="mr-2 h-4 w-4 transition duration-500 ease-in-out group-hover:animate-bounce"
+						/>
+						Code
+					</Button>
+					{#if project.homepage}
+						<Button
+							class="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-[inset_0_1px_0_rgba(0,0,0,0.1),_0_2px_4px_rgba(0,0,0,0.2)] transition-all transition-all duration-200 duration-200 hover:translate-y-[1px] hover:border-gray-400 hover:bg-gray-50 hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_1px_2px_rgba(0,0,0,0.15)] focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none focus:outline-none active:translate-y-[2px] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-800"
+							onclick={() => project.homepage && window.open(project.homepage, '_blank')}
+						>
+							<IconExternalLink
+								class="mr-2 h-4 w-4 transition duration-500 ease-in-out group-hover:animate-bounce"
+							/>
+							Live
+						</Button>
+					{/if}
+				</div>
+			</div>
 		</div>
-	</div>
+	{:else}
+		<div class="flex h-full min-h-[300px] items-center justify-center">
+			<div class="animate-pulse text-gray-400">
+				<div class="h-4 w-4 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+			</div>
+		</div>
+	{/if}
+
+	<div
+		class="pointer-events-none absolute inset-0 rounded-2xl border border-transparent transition-all duration-300 group-hover:border-gray-200"
+	></div>
 </div>

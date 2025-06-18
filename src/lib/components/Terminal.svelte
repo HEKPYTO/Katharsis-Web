@@ -227,11 +227,11 @@
 							<span
 								class="text-gray-300 {cursorVisible
 									? 'opacity-100'
-									: 'opacity-0'} ml-0 transition-opacity">▋</span
+									: 'opacity-0'} ml-0 transition-opacity">█</span
 							>
 						{/if}
 						{#if !inputFocused && currentInput === ''}
-							<span class="font-mono text-gray-500">Type a command...</span>
+							<span class="font-mono text-gray-500">&nbsp;Type a command...</span>
 						{/if}
 					</div>
 				</div>

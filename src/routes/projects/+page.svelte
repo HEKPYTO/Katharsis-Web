@@ -33,7 +33,6 @@
 <section class="section-spacing bg-sketch-hero">
 	<div class="container-sketch">
 		<div class="space-y-16">
-			<!-- Header -->
 			<div class="space-y-4 text-center">
 				<h1 class="heading-xl text-foreground text-balance">All projects</h1>
 				<p class="text-muted-foreground mx-auto max-w-3xl text-lg text-balance">
@@ -42,19 +41,17 @@
 				</p>
 			</div>
 
-			<!-- Projects Grid -->
 			{#if loading}
-				<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{#each Array(9) as _, index (index)}
-						<div class="sketch-card animate-pulse">
-							<div class="h-32 rounded-t-2xl bg-gradient-to-r from-purple-400 to-pink-400"></div>
-							<div class="space-y-3 p-6">
-								<div class="bg-muted h-4 rounded"></div>
-								<div class="bg-muted h-3 w-2/3 rounded"></div>
-								<div class="bg-muted h-8 rounded"></div>
-							</div>
-						</div>
-					{/each}
+				<div class="py-16 text-center">
+					<div class="text-muted-foreground inline-flex items-center space-x-3">
+						<div
+							class="h-6 w-6 animate-spin rounded-full border-2 border-current border-t-transparent"
+						></div>
+						<span class="text-lg">Loading all projects...</span>
+					</div>
+					<p class="text-muted-foreground/70 mt-2 text-sm">
+						Fetching the latest repositories from GitHub
+					</p>
 				</div>
 			{:else if projects.length > 0}
 				<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -72,7 +69,6 @@
 				</div>
 			{/if}
 
-			<!-- GitHub Profile Link -->
 			<div class="text-center">
 				<div class="sketch-card mx-auto max-w-2xl space-y-4 p-8">
 					<h3 class="text-foreground text-2xl font-semibold">Want to see more?</h3>
