@@ -83,7 +83,7 @@
 
 <div
 	bind:this={cardElement}
-	class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/60 bg-white shadow-sm transition-all duration-300 hover:border-gray-300/80 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800 dark:shadow-lg dark:hover:border-gray-600/80 dark:hover:shadow-xl {!isVisible
+	class="group relative flex h-full flex-col overflow-hidden rounded-2xl border-gray-200/60 bg-white shadow-sm transition-all duration-300 hover:border-gray-300/80 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800 dark:shadow-lg dark:hover:border-gray-600/80 dark:hover:shadow-xl {!isVisible
 		? 'opacity-0'
 		: 'opacity-100'}"
 	style="transition: opacity 0.6s ease-out;"
