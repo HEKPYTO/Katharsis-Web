@@ -14,9 +14,9 @@
 			<div class="animate-fade-in space-y-8">
 				<div class="space-y-6">
 					<div
-						class="bg-card/80 text-card-foreground border-border animate-bounce-gentle inline-flex items-center space-x-2 rounded-full border px-4 py-2 text-sm font-medium backdrop-blur-sm"
+						class="bg-card/80 text-card-foreground border-border inline-flex items-center space-x-2 rounded-full border px-4 py-2 text-sm font-medium backdrop-blur-sm"
 					>
-						<IconSparkles class="h-4 w-4 animate-pulse text-pink-500" />
+						<IconSparkles class="h-4 w-4 animate-ping animate-pulse text-pink-500" />
 						<span>Welcome to my portfolio</span>
 					</div>
 

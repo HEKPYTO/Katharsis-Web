@@ -64,7 +64,7 @@
 	<div class="container-sketch">
 		<div class="space-y-12">
 			<div class="animate-fade-in max-w-2xl">
-				<div class="sketch-badge sketch-badge-prototype animate-bounce-gentle mb-4">PORTFOLIO</div>
+				<div class="sketch-badge sketch-badge-prototype mb-4 animate-bounce">PORTFOLIO</div>
 				<h2 class="heading-lg text-foreground mb-6">Things I've built</h2>
 				<p class="text-muted-foreground text-lg leading-relaxed">
 					Here are some of the projects I've worked on. Each one taught me something new and helped
@@ -274,7 +274,7 @@
 	<div class="container-sketch">
 		<div class="animate-fade-in mx-auto max-w-3xl space-y-8 text-center">
 			<div class="space-y-4">
-				<div class="animate-bounce-gentle text-6xl">👋</div>
+				<div class="text-6xl">👋</div>
 				<h2 class="heading-lg text-foreground">Let's connect and create something amazing</h2>
 				<p class="text-muted-foreground text-lg leading-relaxed">
 					I'm always interested in new opportunities, collaborations, or just having a chat about
