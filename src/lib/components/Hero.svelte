@@ -39,7 +39,7 @@
 
 					<div class="space-y-4">
 						<div
-							class="animate-fade-in-delayed group inline-flex rounded-full bg-gradient-to-r from-purple-400 to-pink-400 p-1"
+							class="animate-fade-in-delayed group inline-flex rounded-full bg-gradient-to-r from-purple-300 via-pink-300 to-orange-300 p-1"
 						>
 							<button
 								on:click={scrollToProjects}
