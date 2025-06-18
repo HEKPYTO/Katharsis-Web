@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button.svelte';
+	// import Button from '$lib/components/ui/button.svelte';
 	import { IconArrowDown, IconSparkles } from '@tabler/icons-svelte';
 
 	const scrollToProjects = () => {
@@ -33,24 +33,33 @@
 					<p
 						class="text-muted-foreground animate-slide-up-delayed text-lg leading-relaxed text-balance"
 					>
-						I am Jda Kathayut, interests in analyzing big data that put the focus on you and your
-						users. Welcome to my corner of the internet where I share my projects and journey.
+						I am Jda. Big data analyst puting the focus on any customers. Welcome to my corner of
+						the internet where I share my projects and journey.
 					</p>
 
 					<div class="space-y-4">
-						<Button
-							class="text-foreground group animate-gradient-border relative inline-flex items-center justify-center overflow-hidden rounded-full border-2 border-transparent bg-transparent px-8 py-4 text-base font-medium transition-all duration-700 hover:scale-105 hover:shadow-xl"
-							style="background: linear-gradient(135deg, #a855f7, #ec4899, #f97316) border-box; background-clip: border-box;"
-							onclick={scrollToProjects}
+						<div
+							class="animate-fade-in-delayed group inline-flex rounded-full bg-gradient-to-r from-purple-400 to-pink-400 p-1"
 						>
-							<div
-								class="bg-background group-hover:bg-background/95 absolute inset-[2px] rounded-full transition-all duration-700"
-							></div>
-							<div class="relative z-10 flex items-center space-x-2">
+							<button
+								on:click={scrollToProjects}
+								class="
+								inline-flex items-center space-x-2
+								rounded-full bg-black
+								px-6
+								py-1.5 text-white
+								shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all
+								duration-150
+								hover:translate-y-[0.5px]
+								hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)]
+								focus:outline-none
+								active:translate-y-[0.75px]
+								"
+							>
 								<span>Explore my work</span>
 								<IconArrowDown class="h-4 w-4" />
-							</div>
-						</Button>
+							</button>
+						</div>
 
 						<p class="text-muted-foreground animate-fade-in-delayed-2 text-sm">
 							Crafting digital experiences since 2020

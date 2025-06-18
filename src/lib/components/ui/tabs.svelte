@@ -1,22 +1,28 @@
 <script lang="ts">
 	import { cn } from '$lib/utils';
 
+	import type { Snippet } from 'svelte';
+
 	interface TabsProps {
+		children?: Snippet;
 		value?: string;
 		class?: string;
 	}
 
 	interface TabsListProps {
+		children?: Snippet;
 		class?: string;
 	}
 
 	interface TabsTriggerProps {
+		children?: Snippet;
 		value: string;
 		class?: string;
 		disabled?: boolean;
 	}
 
 	interface TabsContentProps {
+		children?: Snippet;
 		value: string;
 		class?: string;
 	}

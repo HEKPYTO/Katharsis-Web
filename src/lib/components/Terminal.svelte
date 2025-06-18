@@ -171,13 +171,18 @@
 	<!-- Terminal Window -->
 	<div class="overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-2xl">
 		<!-- Terminal Header -->
-		<div class="flex items-center space-x-2 border-b border-gray-700 bg-gray-800 px-4 py-3">
+		<div
+			class="relative flex items-center space-x-2 border-b border-gray-700 bg-gray-800 px-4 py-3"
+		>
+			<!-- Left traffic lights -->
 			<div class="flex space-x-2">
 				<div class="h-3 w-3 rounded-full bg-red-500"></div>
 				<div class="h-3 w-3 rounded-full bg-yellow-500"></div>
 				<div class="h-3 w-3 rounded-full bg-green-500"></div>
 			</div>
-			<div class="flex-1 text-center">
+
+			<!-- Centered title -->
+			<div class="absolute left-1/2 -translate-x-1/2 transform">
 				<span class="text-sm font-medium text-gray-300">development.zsh</span>
 			</div>
 		</div>
