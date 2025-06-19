@@ -14,10 +14,10 @@
 		"lint": "prettier --check . && eslint ."
 	},
 	"lint-staged": {
-		"**/*.{js,ts,svelte,json,md,html}": [
+		"**/*.{js,ts,svelte,json,md,html,css}": [
 			"prettier --write"
 		],
-		"**/*.{js,ts,svelte,html}": [
+		"**/*.{js,ts,svelte,html,css}": [
 			"eslint --fix"
 		]
 	},
