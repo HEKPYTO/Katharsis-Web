@@ -163,7 +163,7 @@
 			<div class="mt-auto">
 				<div class="flex space-x-3">
 					<Button
-						class="flex-1 justify-center rounded-lg border border-gray-900 bg-gray-900 px-4 py-2.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),_0_2px_4px_rgba(0,0,0,0.2)] transition-all duration-200 hover:translate-y-[1px] hover:bg-gray-800 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),_0_1px_2px_rgba(0,0,0,0.15)] focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 focus:outline-none active:translate-y-[2px] dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus:ring-gray-100 dark:focus:ring-offset-gray-800"
+						class="flex-1 justify-center rounded-lg border border-gray-900 bg-gray-900 px-4 py-2.5 text-sm font-medium text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.1),_0_2px_4px_rgba(0,0,0,0.2)] transition-all duration-200 hover:translate-y-[1px] hover:bg-gray-800 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.15),_0_1px_2px_rgba(0,0,0,0.15)] active:translate-y-[2px] dark:border-gray-100 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200 dark:focus:ring-gray-100 dark:focus:ring-offset-gray-800"
 						onclick={() => window.open(project.html_url, '_blank')}
 					>
 						<IconBrandGithub
@@ -173,7 +173,7 @@
 					</Button>
 					{#if project.homepage}
 						<Button
-							class="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-[inset_0_1px_0_rgba(0,0,0,0.1),_0_2px_4px_rgba(0,0,0,0.2)] transition-all duration-200 hover:translate-y-[1px] hover:border-gray-400 hover:bg-gray-50 hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_1px_2px_rgba(0,0,0,0.15)] focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none active:translate-y-[2px] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-800"
+							class="rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-[inset_0_1px_0_rgba(0,0,0,0.1),_0_2px_4px_rgba(0,0,0,0.2)] transition-all duration-200 hover:translate-y-[1px] hover:border-gray-400 hover:bg-gray-50 hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_1px_2px_rgba(0,0,0,0.15)] active:translate-y-[2px] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:border-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-800"
 							onclick={() => project.homepage && window.open(project.homepage, '_blank')}
 						>
 							<IconExternalLink
