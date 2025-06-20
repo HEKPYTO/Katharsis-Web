@@ -28,9 +28,10 @@
 
 	interface Props {
 		project: GitHubRepository;
+		animationDelay?: number;
 	}
 
-	let { project }: Props = $props();
+	let { project, animationDelay = 0 }: Props = $props();
 	let visible = $state(false);
 	let element: HTMLDivElement;
 
@@ -80,7 +81,9 @@
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						visible = true;
+						setTimeout(() => {
+							visible = true;
+						}, animationDelay);
 						observer.unobserve(entry.target);
 					}
 				});
@@ -106,9 +109,9 @@
 <div
 	bind:this={element}
 	class="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200/60 bg-white shadow-sm transition-all duration-300 hover:border-gray-300/80 hover:shadow-lg dark:border-gray-700/60 dark:bg-gray-800 dark:shadow-lg dark:hover:border-gray-600/80 dark:hover:shadow-xl {!visible
-		? 'opacity-0'
-		: 'opacity-100'}"
-	style="transition: opacity 0.6s ease-out;"
+		? 'translate-y-8 opacity-0'
+		: 'translate-y-0 opacity-100'}"
+	style="transition: opacity 0.8s ease-out, transform 0.8s ease-out;"
 >
 	{#if visible}
 		<div

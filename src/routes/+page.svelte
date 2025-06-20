@@ -90,9 +90,9 @@
 						</div>
 					</div>
 				{:else if projects.length > 0}
-					<div class="stagger-animation grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-						{#each projects.slice(0, 6) as project (project.id)}
-							<ProjectCard {project} />
+					<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+						{#each projects.slice(0, 6) as project, index (project.id)}
+							<ProjectCard {project} animationDelay={index * 100} />
 						{/each}
 					</div>
 				{:else}
