@@ -91,7 +91,7 @@
 					</div>
 				{:else if projects.length > 0}
 					<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-						{#each projects.slice(0, 6) as project, index (project.id)}
+						{#each projects.slice(0, 6) as project (project.id)}
 							<ProjectCard {project} animationDelay={0} />
 						{/each}
 					</div>

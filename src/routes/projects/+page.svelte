@@ -55,7 +55,7 @@
 				</div>
 			{:else if projects.length > 0}
 				<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-					{#each projects as project, index (project.id)}
+					{#each projects as project (project.id)}
 						<div class="w-full">
 							<ProjectCard {project} animationDelay={0} />
 						</div>

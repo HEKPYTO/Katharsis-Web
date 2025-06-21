@@ -3,7 +3,7 @@
 	import { IconArrowDown, IconSparkles } from '@tabler/icons-svelte';
 
 	const scrollToProjects = () => {
-		document.getElementById('featured-work')?.scrollIntoView({ behavior: 'smooth' });
+		document.getElementById('featured-work')?.scrollIntoView({ behavior: 'smooth', block: 'end' });
 	};
 </script>
 
