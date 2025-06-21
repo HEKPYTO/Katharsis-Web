@@ -39,9 +39,7 @@
 	];
 </script>
 
-<nav
-	class="bg-background/80 border-border animate-slide-down sticky top-0 z-50 w-full border-b backdrop-blur-lg"
->
+<nav class="bg-background/80 border-border sticky top-0 z-50 w-full border-b backdrop-blur-lg">
 	<div class="container-sketch">
 		<div class="relative flex h-16 items-center">
 			<!-- Logo -->
