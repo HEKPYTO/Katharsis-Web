@@ -57,7 +57,7 @@
 				<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
 					{#each projects as project, index (project.id)}
 						<div class="w-full">
-							<ProjectCard {project} animationDelay={index * 100} />
+							<ProjectCard {project} animationDelay={0} />
 						</div>
 					{/each}
 				</div>
