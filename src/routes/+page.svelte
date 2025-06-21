@@ -103,13 +103,11 @@
 
 				<div class="animate-fade-in-delayed text-center">
 					<Button
-						class="bg-muted text-muted-foreground hover:bg-muted/80 border-border rounded-full border px-6 py-3 font-medium transition-all duration-500 hover:scale-105 hover:shadow-lg"
+						class="inline-flex items-center space-x-2 rounded-full bg-neutral-900 px-6 py-2 text-neutral-100 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all duration-150 hover:translate-y-[0.5px] hover:bg-neutral-900 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)] focus:outline-none active:translate-y-[0.75px] dark:bg-neutral-100 dark:text-neutral-900 dark:shadow-[inset_0_2px_0_rgba(0,0,0,0.1),_0_4px_6px_rgba(255,255,255,0.3)] dark:hover:bg-neutral-100 dark:hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_2px_4px_rgba(255,255,255,0.4)]"
 					>
-						<a href="/projects" class="flex items-center">
+						<a href="/projects" class="flex items-center space-x-2">
 							<span>View all projects</span>
-							<IconArrowRight
-								class="ml-2 h-4 w-4 transition-transform duration-500 group-hover:translate-x-1"
-							/>
+							<IconArrowRight class="h-4 w-4" />
 						</a>
 					</Button>
 				</div>
@@ -270,11 +268,13 @@
 	</div>
 </section>
 
-<section class="section-spacing bg-sketch-hero">
+<section
+	class="section-spacing dark:from-background bg-gradient-to-b from-white via-pink-100 via-purple-100 to-blue-100 dark:via-pink-900/40 dark:via-purple-900/40 dark:to-blue-900/40"
+>
 	<div class="container-sketch">
 		<div class="animate-fade-in mx-auto max-w-3xl space-y-8 text-center">
 			<div class="space-y-4">
-				<div class="text-6xl">👋</div>
+				<div class="text-6xl hover:animate-pulse">👋</div>
 				<h2 class="heading-lg text-foreground">Let's connect and create something amazing</h2>
 				<p class="text-muted-foreground text-lg leading-relaxed">
 					I'm always interested in new opportunities, collaborations, or just having a chat about
@@ -282,7 +282,7 @@
 				</p>
 			</div>
 			<Button
-				class="bg-foreground text-background hover:bg-foreground/90 rounded-full px-8 py-4 text-base font-medium shadow-lg transition-all duration-500 hover:scale-105 hover:shadow-xl"
+				class="inline-flex items-center space-x-2 rounded-full bg-neutral-900 px-8 py-4 text-neutral-100 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all duration-150 hover:translate-y-[0.5px] hover:bg-neutral-900 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)] focus:outline-none active:translate-y-[0.75px] dark:bg-neutral-100 dark:text-neutral-900 dark:shadow-[inset_0_2px_0_rgba(0,0,0,0.1),_0_4px_6px_rgba(255,255,255,0.3)] dark:hover:bg-neutral-100 dark:hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_2px_4px_rgba(255,255,255,0.4)]"
 			>
 				<a href="/socials">Say hello</a>
 			</Button>

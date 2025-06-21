@@ -115,7 +115,7 @@
 						<div class="space-y-2 text-center">
 							<h2 class="heading-sm text-foreground">Send me a message</h2>
 							<p class="text-muted-foreground">
-								Have a project in mind or just want to chat? Drop me a message!
+								Have a project in mind or just want to chat? Give me a message!
 							</p>
 						</div>
 

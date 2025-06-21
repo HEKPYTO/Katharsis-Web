@@ -7,10 +7,11 @@
 	};
 </script>
 
-<section class="section-spacing bg-sketch-hero">
+<section
+	class="section-spacing dark:to-background bg-gradient-to-b from-pink-100 via-blue-100 via-purple-100 to-white dark:from-purple-900/40 dark:via-blue-900/40 dark:via-pink-900/40"
+>
 	<div class="container-sketch">
 		<div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-			<!-- Left side - Main heading -->
 			<div class="animate-fade-in space-y-8">
 				<div class="space-y-6">
 					<div
@@ -27,7 +28,6 @@
 				</div>
 			</div>
 
-			<!-- Right side - Description and CTA -->
 			<div class="animate-fade-in-delayed space-y-8">
 				<div class="space-y-6">
 					<p
