@@ -37,10 +37,11 @@
 	/>
 </svelte:head>
 
-<section class="section-spacing bg-sketch-hero">
+<div
+	class="dark:to-background bg-gradient-to-b from-purple-300 via-pink-200 via-rose-200 to-white dark:from-purple-800 dark:via-pink-900 dark:via-rose-900"
+>
 	<div class="container-sketch">
-		<div class="space-y-16">
-			<!-- Header -->
+		<div class="pt-16 pb-8 md:pt-24 md:pb-12 lg:pt-32 lg:pb-16">
 			<div class="space-y-4 text-center">
 				<h1 class="heading-xl text-foreground text-balance">About me</h1>
 				<p class="text-muted-foreground mx-auto max-w-3xl text-lg text-balance">
@@ -48,8 +49,13 @@
 					development environment. Here's what drives my creativity and productivity.
 				</p>
 			</div>
+		</div>
+	</div>
+</div>
 
-			<!-- Anime Section -->
+<section class="dark:bg-background bg-white">
+	<div class="container-sketch">
+		<div class="space-y-16 py-16">
 			<div class="space-y-8">
 				<div class="space-y-4 text-center">
 					<div
@@ -107,7 +113,6 @@
 				</div>
 			</div>
 
-			<!-- Setup Section -->
 			<div class="space-y-8">
 				<div class="space-y-4 text-center">
 					<div
@@ -194,7 +199,6 @@
 				</div>
 			</div>
 
-			<!-- Personal Philosophy Section -->
 			<div class="space-y-8">
 				<div class="space-y-4 text-center">
 					<h2 class="heading-md text-foreground">My philosophy</h2>

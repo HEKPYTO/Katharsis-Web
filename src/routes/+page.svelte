@@ -281,11 +281,16 @@
 					technology and development.
 				</p>
 			</div>
-			<Button
-				class="inline-flex items-center space-x-2 rounded-full bg-neutral-900 px-8 py-4 text-neutral-100 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all duration-150 hover:translate-y-[0.5px] hover:bg-neutral-900 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)] focus:outline-none active:translate-y-[0.75px] dark:bg-neutral-100 dark:text-neutral-900 dark:shadow-[inset_0_2px_0_rgba(0,0,0,0.1),_0_4px_6px_rgba(255,255,255,0.3)] dark:hover:bg-neutral-100 dark:hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_2px_4px_rgba(255,255,255,0.4)]"
+			<div
+				class="animate-fade-in-delayed group inline-flex rounded-full bg-gradient-to-r from-purple-300 via-pink-300 to-orange-300 p-1"
 			>
-				<a href="/socials">Say hello</a>
-			</Button>
+				<Button
+					class="inline-flex items-center space-x-2 rounded-full bg-black px-6 py-1.5 text-white shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all duration-150 hover:translate-y-[0.5px] hover:bg-black hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)] focus:outline-none active:translate-y-[1px]"
+				>
+					<a href="/socials">Say hello</a>
+					<IconHeart class="h-5 w-5" />
+				</Button>
+			</div>
 		</div>
 	</div>
 </section>
