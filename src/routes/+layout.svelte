@@ -2,6 +2,7 @@
 	import '../app.css';
 	import Navigation from '$lib/components/Navigation.svelte';
 	import { ModeWatcher } from 'mode-watcher';
+	import Footer from '$lib/components/Footer.svelte';
 
 	let { children } = $props();
 </script>
@@ -38,4 +39,5 @@
 	<main>
 		{@render children()}
 	</main>
+	<Footer />
 </div>
