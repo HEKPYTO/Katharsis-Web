@@ -13,6 +13,19 @@
 	let historyIndex = $state(-1);
 	let cursorVisible = $state(true);
 	let inputFocused = $state(false);
+	let scrollY = $state(0);
+	let tiltAngle = $state(0);
+
+	const getCommandStyle = (input: string) => {
+		const trimmed = input.trim().toLowerCase();
+		if (!trimmed) return 'text-gray-300';
+		if (trimmed in commands) return 'text-green-400';
+
+		const partialMatches = Object.keys(commands).filter((cmd) => cmd.startsWith(trimmed));
+		if (partialMatches.length > 0) return 'text-yellow-400';
+
+		return 'text-red-400';
+	};
 
 	const commands = {
 		help: () => [
@@ -75,21 +88,35 @@
 	};
 
 	onMount(() => {
-		// Blinking cursor animation
 		const interval = setInterval(() => {
 			cursorVisible = !cursorVisible;
 		}, 530);
 
-		// Focus input when terminal is clicked
 		const handleClick = () => {
 			inputRef?.focus();
 			inputFocused = true;
 		};
 		terminalRef?.addEventListener('click', handleClick);
 
+		const handleScroll = () => {
+			scrollY = window.scrollY;
+			const maxTilt = 8;
+			const scrollThreshold = 300;
+
+			if (scrollY <= scrollThreshold) {
+				tiltAngle = maxTilt * (1 - scrollY / scrollThreshold);
+			} else {
+				tiltAngle = 0;
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		handleScroll();
+
 		return () => {
 			clearInterval(interval);
 			terminalRef?.removeEventListener('click', handleClick);
+			window.removeEventListener('scroll', handleScroll);
 		};
 	});
 
@@ -97,15 +124,12 @@
 		if (event.key === 'Enter') {
 			const command = currentInput.trim().toLowerCase();
 
-			// Add to command history if not empty
 			if (currentInput.trim()) {
 				commandHistory = [...commandHistory, currentInput.trim()];
 			}
 
-			// Add command to history
 			history = [...history, { type: 'command', content: `$ ${currentInput}` }];
 
-			// Execute command
 			if (command in commands) {
 				const output = commands[command as keyof typeof commands]();
 				if (Array.isArray(output)) {
@@ -114,9 +138,7 @@
 						...output.map((line) => ({ type: 'output' as const, content: line }))
 					];
 				}
-			} else if (command === '') {
-				// Empty command, just add a new line
-			} else {
+			} else if (command !== '') {
 				history = [
 					...history,
 					{
@@ -168,32 +190,29 @@
 </script>
 
 <div class="mx-auto w-full max-w-4xl">
-	<!-- Terminal Window -->
-	<div class="overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-2xl">
-		<!-- Terminal Header -->
+	<div
+		class="overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-2xl transition-all duration-700 ease-out"
+		style="transform: perspective(1000px) rotateX({tiltAngle}deg);"
+	>
 		<div
 			class="relative flex items-center space-x-2 border-b border-gray-700 bg-gray-800 px-4 py-3"
 		>
-			<!-- Left traffic lights -->
 			<div class="flex space-x-2">
 				<div class="h-3 w-3 rounded-full bg-red-500"></div>
 				<div class="h-3 w-3 rounded-full bg-yellow-500"></div>
 				<div class="h-3 w-3 rounded-full bg-green-500"></div>
 			</div>
 
-			<!-- Centered title -->
 			<div class="absolute left-1/2 -translate-x-1/2 transform">
 				<span class="text-sm font-medium text-gray-300">development.zsh</span>
 			</div>
 		</div>
 
-		<!-- Terminal Content -->
 		<div
 			bind:this={terminalRef}
 			class="scrollbar-hide h-96 overflow-y-auto bg-gray-900 p-4 font-mono text-sm"
 			style="scrollbar-width: none; -ms-overflow-style: none;"
 		>
-			<!-- History -->
 			{#each history as line, index (index)}
 				<div class="mb-1">
 					{#if line.type === 'command'}
@@ -204,11 +223,9 @@
 				</div>
 			{/each}
 
-			<!-- Current Input Line -->
 			<div class="flex items-center">
 				<span class="mr-2 text-green-400">$</span>
 				<div class="relative flex-1">
-					<!-- Hidden input for functionality -->
 					<input
 						bind:this={inputRef}
 						bind:value={currentInput}
@@ -220,9 +237,8 @@
 						spellcheck="false"
 					/>
 
-					<!-- Visible text and cursor -->
 					<div class="flex items-center">
-						<span class="font-mono text-gray-300">{currentInput}</span>
+						<span class="font-mono {getCommandStyle(currentInput)}">{currentInput}</span>
 						{#if inputFocused || currentInput === ''}
 							<span
 								class="text-gray-300 {cursorVisible
@@ -239,7 +255,6 @@
 		</div>
 	</div>
 
-	<!-- Terminal Instructions -->
 	<div class="mt-4 text-center">
 		<p class="text-muted-foreground text-sm">
 			Click on the terminal and type commands to explore my development approach
