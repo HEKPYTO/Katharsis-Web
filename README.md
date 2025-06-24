@@ -205,10 +205,6 @@ bun run build
 # Deploy to your preferred platform (Vercel, Netlify, etc.)
 ```
 
-## License
-
-MIT License - feel free to use this template for your own portfolio.
-
 ## Contributing
 
 1. Fork the repository
@@ -220,4 +216,4 @@ MIT License - feel free to use this template for your own portfolio.
 
 ---
 
-Built with ❤️ using SvelteKit and modern web technologies.
+Built using SvelteKit and modern web technologies.
