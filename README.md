@@ -72,8 +72,6 @@ bun add <package-name>
 bun add -d <package-name>
 ```
 
-````
-
 ## Customization
 
 ### GitHub Integration
@@ -82,7 +80,7 @@ Update your GitHub username in `src/lib/api/github.ts`:
 
 ```typescript
 const USERNAME = 'your-github-username';
-````
+```
 
 ### Personal Information
 
