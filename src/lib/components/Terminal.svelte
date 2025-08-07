@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { IconX, IconMinus, IconArrowsMaximize } from '@tabler/icons-svelte';
 
 	let terminalRef: HTMLDivElement;
 	let inputRef: HTMLInputElement;
@@ -15,6 +16,7 @@
 	let inputFocused = $state(false);
 	let scrollY = $state(0);
 	let tiltAngle = $state(0);
+	let terminalButtonsHover = $state(false);
 
 	const getCommandStyle = (input: string) => {
 		const trimmed = input.trim().toLowerCase();
@@ -198,9 +200,38 @@
 			class="relative flex items-center space-x-2 border-b border-gray-700 bg-gray-800 px-4 py-3"
 		>
 			<div class="flex space-x-2">
-				<div class="h-3 w-3 rounded-full bg-red-500"></div>
-				<div class="h-3 w-3 rounded-full bg-yellow-500"></div>
-				<div class="h-3 w-3 rounded-full bg-green-500"></div>
+				<button
+					class="relative h-3 w-3 cursor-pointer rounded-full bg-red-500 transition-all duration-300"
+					onmouseenter={() => (terminalButtonsHover = true)}
+					onmouseleave={() => (terminalButtonsHover = false)}
+					type="button"
+				>
+					{#if terminalButtonsHover}
+						<IconX class="absolute inset-0 m-auto h-2.5 w-2.5 text-slate-900 opacity-90" />
+					{/if}
+				</button>
+				<button
+					class="relative h-3 w-3 cursor-pointer rounded-full bg-yellow-500 transition-all duration-300"
+					onmouseenter={() => (terminalButtonsHover = true)}
+					onmouseleave={() => (terminalButtonsHover = false)}
+					type="button"
+				>
+					{#if terminalButtonsHover}
+						<IconMinus class="absolute inset-0 m-auto h-2.5 w-2.5 text-slate-900 opacity-90" />
+					{/if}
+				</button>
+				<button
+					class="relative h-3 w-3 cursor-pointer rounded-full bg-green-500 transition-all duration-300"
+					onmouseenter={() => (terminalButtonsHover = true)}
+					onmouseleave={() => (terminalButtonsHover = false)}
+					type="button"
+				>
+					{#if terminalButtonsHover}
+						<IconArrowsMaximize
+							class="absolute inset-0 m-auto h-2.5 w-2.5 text-slate-900 opacity-90"
+						/>
+					{/if}
+				</button>
 			</div>
 
 			<div class="absolute left-1/2 -translate-x-1/2 transform">
