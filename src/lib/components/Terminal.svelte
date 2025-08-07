@@ -1,9 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { IconX, IconMinus, IconArrowsMaximize } from '@tabler/icons-svelte';
+	import { IconX, IconMinus, IconArrowsMaximize, IconArrowsMinimize } from '@tabler/icons-svelte';
 
-	let terminalRef: HTMLDivElement;
-	let inputRef: HTMLInputElement;
+	let { terminalMode = $bindable('normal') } = $props<
+		'normal' | 'minimized' | 'maximized' | 'closed'
+	>();
+	let preMinimizeState = $state<'normal' | 'maximized'>('normal');
+
+	let terminalRef: HTMLDivElement | undefined = $state();
+	let inputRef: HTMLDivElement | undefined = $state();
+	let terminalContainerRef: HTMLDivElement | undefined = $state();
+
 	let currentInput = $state('');
 	let history = $state<Array<{ type: 'command' | 'output'; content: string }>>([
 		{ type: 'output', content: 'Welcome to my development philosophy terminal!' },
@@ -17,15 +24,14 @@
 	let scrollY = $state(0);
 	let tiltAngle = $state(0);
 	let terminalButtonsHover = $state(false);
+	let isAnimating = $state(false);
 
 	const getCommandStyle = (input: string) => {
 		const trimmed = input.trim().toLowerCase();
 		if (!trimmed) return 'text-gray-300';
 		if (trimmed in commands) return 'text-green-400';
-
 		const partialMatches = Object.keys(commands).filter((cmd) => cmd.startsWith(trimmed));
 		if (partialMatches.length > 0) return 'text-yellow-400';
-
 		return 'text-red-400';
 	};
 
@@ -89,49 +95,48 @@
 		}
 	};
 
+	function scrollToTerminal() {
+		if (terminalContainerRef && terminalMode === 'normal') {
+			terminalContainerRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
+	}
+
 	onMount(() => {
 		const interval = setInterval(() => {
 			cursorVisible = !cursorVisible;
 		}, 530);
-
 		const handleClick = () => {
 			inputRef?.focus();
 			inputFocused = true;
 		};
 		terminalRef?.addEventListener('click', handleClick);
-
 		const handleScroll = () => {
 			scrollY = window.scrollY;
 			const maxTilt = 8;
 			const scrollThreshold = 300;
-
 			if (scrollY <= scrollThreshold) {
 				tiltAngle = maxTilt * (1 - scrollY / scrollThreshold);
 			} else {
 				tiltAngle = 0;
 			}
 		};
-
 		window.addEventListener('scroll', handleScroll);
 		handleScroll();
-
 		return () => {
 			clearInterval(interval);
 			terminalRef?.removeEventListener('click', handleClick);
 			window.removeEventListener('scroll', handleScroll);
+			document.body.style.overflow = '';
 		};
 	});
 
 	function handleKeyDown(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			const command = currentInput.trim().toLowerCase();
-
 			if (currentInput.trim()) {
 				commandHistory = [...commandHistory, currentInput.trim()];
 			}
-
 			history = [...history, { type: 'command', content: `$ ${currentInput}` }];
-
 			if (command in commands) {
 				const output = commands[command as keyof typeof commands]();
 				if (Array.isArray(output)) {
@@ -149,12 +154,9 @@
 					}
 				];
 			}
-
 			history = [...history, { type: 'output', content: '' }];
-
 			currentInput = '';
 			historyIndex = -1;
-
 			setTimeout(() => {
 				terminalRef?.scrollTo({ top: terminalRef.scrollHeight, behavior: 'smooth' });
 			}, 10);
@@ -189,107 +191,214 @@
 	function handleBlur() {
 		inputFocused = false;
 	}
+
+	function handleCloseTerminal() {
+		if (isAnimating) return;
+		isAnimating = true;
+		terminalMode = 'closed';
+		document.body.style.overflow = '';
+		setTimeout(() => (isAnimating = false), 300);
+	}
+
+	function handleMinimizeTerminal() {
+		if (isAnimating) return;
+		isAnimating = true;
+
+		if (terminalMode === 'minimized') {
+			if (preMinimizeState === 'maximized') {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = '';
+			}
+
+			terminalMode = preMinimizeState;
+			if (preMinimizeState === 'normal') {
+				setTimeout(() => {
+					scrollToTerminal();
+				}, 100);
+			}
+		} else {
+			document.body.style.overflow = '';
+			preMinimizeState = terminalMode;
+			terminalMode = 'minimized';
+		}
+		setTimeout(() => (isAnimating = false), 1000);
+	}
+
+	function handleMaximizeTerminal() {
+		if (isAnimating) return;
+		isAnimating = true;
+
+		if (terminalMode === 'maximized') {
+			terminalMode = 'normal';
+			preMinimizeState = 'normal';
+			document.body.style.overflow = '';
+			setTimeout(() => {
+				scrollToTerminal();
+			}, 100);
+		} else {
+			terminalMode = 'maximized';
+			preMinimizeState = 'maximized';
+			document.body.style.overflow = 'hidden';
+		}
+		setTimeout(() => (isAnimating = false), 1000);
+	}
+
+	function handleMinimizedClick() {
+		if (terminalMode === 'minimized') {
+			handleMinimizeTerminal();
+		}
+	}
+
+	function handleMinimizedKeydown(event: KeyboardEvent) {
+		if ((event.key === 'Enter' || event.key === ' ') && terminalMode === 'minimized') {
+			event.preventDefault();
+			handleMinimizeTerminal();
+		}
+	}
 </script>
 
-<div class="mx-auto w-full max-w-4xl">
-	<div
-		class="overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-2xl transition-all duration-700 ease-out"
-		style="transform: perspective(1000px) rotateX({tiltAngle}deg);"
-	>
+{#if terminalMode !== 'closed'}
+	<div class="mx-auto w-full max-w-4xl" bind:this={terminalContainerRef} data-terminal-container>
 		<div
-			class="relative flex items-center space-x-2 border-b border-gray-700 bg-gray-800 px-4 py-3"
+			class="transition-all duration-1000 ease-out
+				{terminalMode === 'normal' ? 'relative' : ''}
+				{terminalMode === 'minimized' ? 'fixed left-5 z-[9999] cursor-pointer' : ''}
+				{terminalMode === 'maximized' ? 'fixed top-20 right-4 bottom-4 left-4 z-[9999]' : ''}"
+			style={terminalMode === 'minimized'
+				? 'top: 50vh; transform: translateY(-50%) perspective(800px) rotateY(25deg) scale(0.3); transform-origin: left center;'
+				: ''}
+			onclick={handleMinimizedClick}
+			onkeydown={handleMinimizedKeydown}
+			role="button"
+			tabindex={terminalMode === 'minimized' ? 0 : -1}
+			aria-label="Restore minimized terminal"
 		>
-			<div class="flex space-x-2">
-				<button
-					class="relative h-3 w-3 cursor-pointer rounded-full bg-red-500 transition-all duration-300"
-					onmouseenter={() => (terminalButtonsHover = true)}
-					onmouseleave={() => (terminalButtonsHover = false)}
-					type="button"
+			<div
+				class="overflow-hidden rounded-lg border border-gray-700 bg-gray-900 shadow-2xl transition-all duration-1000 ease-out {terminalMode ===
+				'maximized'
+					? 'h-full w-full rounded-xl border-gray-600'
+					: ''}"
+				style={terminalMode === 'normal'
+					? `transform: perspective(1000px) rotateX(${tiltAngle}deg);`
+					: ''}
+			>
+				<div
+					class="relative flex items-center space-x-2 border-b border-gray-700 bg-gray-800 px-4 py-3"
 				>
-					{#if terminalButtonsHover}
-						<IconX class="absolute inset-0 m-auto h-2.5 w-2.5 text-slate-900 opacity-90" />
-					{/if}
-				</button>
-				<button
-					class="relative h-3 w-3 cursor-pointer rounded-full bg-yellow-500 transition-all duration-300"
-					onmouseenter={() => (terminalButtonsHover = true)}
-					onmouseleave={() => (terminalButtonsHover = false)}
-					type="button"
-				>
-					{#if terminalButtonsHover}
-						<IconMinus class="absolute inset-0 m-auto h-2.5 w-2.5 text-slate-900 opacity-90" />
-					{/if}
-				</button>
-				<button
-					class="relative h-3 w-3 cursor-pointer rounded-full bg-green-500 transition-all duration-300"
-					onmouseenter={() => (terminalButtonsHover = true)}
-					onmouseleave={() => (terminalButtonsHover = false)}
-					type="button"
-				>
-					{#if terminalButtonsHover}
-						<IconArrowsMaximize
-							class="absolute inset-0 m-auto h-2.5 w-2.5 text-slate-900 opacity-90"
-						/>
-					{/if}
-				</button>
-			</div>
-
-			<div class="absolute left-1/2 -translate-x-1/2 transform">
-				<span class="text-sm font-medium text-gray-300">development.zsh</span>
-			</div>
-		</div>
-
-		<div
-			bind:this={terminalRef}
-			class="scrollbar-hide h-96 overflow-y-auto bg-gray-900 p-4 font-mono text-sm"
-			style="scrollbar-width: none; -ms-overflow-style: none;"
-		>
-			{#each history as line, index (index)}
-				<div class="mb-1">
-					{#if line.type === 'command'}
-						<span class="text-green-400">{line.content}</span>
-					{:else}
-						<span class="text-gray-300">{line.content}</span>
-					{/if}
+					<div class="flex space-x-2">
+						<button
+							class="relative h-3 w-3 cursor-pointer rounded-full bg-red-500 transition-all duration-300"
+							onmouseenter={() => (terminalButtonsHover = true)}
+							onmouseleave={() => (terminalButtonsHover = false)}
+							onclick={handleCloseTerminal}
+							type="button"
+							aria-label="Close terminal"
+						>
+							{#if terminalButtonsHover}
+								<IconX class="absolute inset-0 m-auto h-2.5 w-2.5 text-black opacity-90" />
+							{/if}
+						</button>
+						<button
+							class="relative h-3 w-3 cursor-pointer rounded-full bg-yellow-500 transition-all duration-300"
+							onmouseenter={() => (terminalButtonsHover = true)}
+							onmouseleave={() => (terminalButtonsHover = false)}
+							onclick={handleMinimizeTerminal}
+							type="button"
+							aria-label="Minimize terminal"
+						>
+							{#if terminalButtonsHover}
+								<IconMinus class="absolute inset-0 m-auto h-2.5 w-2.5 text-black opacity-90" />
+							{/if}
+						</button>
+						<button
+							class="relative h-3 w-3 cursor-pointer rounded-full bg-green-500 transition-all duration-300"
+							onmouseenter={() => (terminalButtonsHover = true)}
+							onmouseleave={() => (terminalButtonsHover = false)}
+							onclick={handleMaximizeTerminal}
+							type="button"
+							aria-label={terminalMode === 'maximized' ? 'Restore terminal' : 'Maximize terminal'}
+						>
+							{#if terminalButtonsHover}
+								{#if terminalMode === 'maximized'}
+									<IconArrowsMinimize
+										class="absolute inset-0 m-auto h-2.5 w-2.5 text-black opacity-90"
+									/>
+								{:else}
+									<IconArrowsMaximize
+										class="absolute inset-0 m-auto h-2.5 w-2.5 text-black opacity-90"
+									/>
+								{/if}
+							{/if}
+						</button>
+					</div>
+					<div class="absolute left-1/2 -translate-x-1/2 transform">
+						<span class="text-sm font-medium text-gray-300">development.zsh</span>
+					</div>
 				</div>
-			{/each}
-
-			<div class="flex items-center">
-				<span class="mr-2 text-green-400">$</span>
-				<div class="relative flex-1">
-					<input
-						bind:this={inputRef}
-						bind:value={currentInput}
-						onkeydown={handleKeyDown}
-						onfocus={handleFocus}
-						onblur={handleBlur}
-						class="absolute inset-0 w-full bg-transparent font-mono text-transparent caret-transparent outline-none"
-						autocomplete="off"
-						spellcheck="false"
-					/>
-
+				<div
+					bind:this={terminalRef}
+					class="scrollbar-hide h-96 overflow-y-auto bg-gray-900 p-4 font-mono text-sm {terminalMode ===
+					'maximized'
+						? 'h-[calc(100%-3rem)]'
+						: ''}"
+					style="scrollbar-width: none; -ms-overflow-style: none;"
+				>
+					{#each history as line, index (index)}
+						<div class="mb-1">
+							{#if line.type === 'command'}
+								<span class="text-green-400">{line.content}</span>
+							{:else}
+								<span class="text-gray-300">{line.content}</span>
+							{/if}
+						</div>
+					{/each}
 					<div class="flex items-center">
-						<span class="font-mono {getCommandStyle(currentInput)}">{currentInput}</span>
-						{#if inputFocused || currentInput === ''}
-							<span
-								class="text-gray-300 {cursorVisible
-									? 'opacity-100'
-									: 'opacity-0'} ml-0 transition-opacity">█</span
-							>
-						{/if}
-						{#if !inputFocused && currentInput === ''}
-							<span class="font-mono text-gray-500">&nbsp;Type a command...</span>
-						{/if}
+						<span class="mr-2 text-green-400">$</span>
+						<div class="relative flex-1">
+							<input
+								bind:this={inputRef}
+								bind:value={currentInput}
+								onkeydown={handleKeyDown}
+								onfocus={handleFocus}
+								onblur={handleBlur}
+								class="absolute inset-0 w-full bg-transparent font-mono text-transparent caret-transparent outline-none"
+								autocomplete="off"
+								spellcheck="false"
+							/>
+							<div class="flex items-center">
+								<span class="font-mono {getCommandStyle(currentInput)}">{currentInput}</span>
+								{#if inputFocused || currentInput === ''}
+									<span
+										class="text-gray-300 {cursorVisible
+											? 'opacity-100'
+											: 'opacity-0'} ml-0 transition-opacity">█</span
+									>
+								{/if}
+								{#if !inputFocused && currentInput === ''}
+									<span class="font-mono text-gray-500">&nbsp;Type a command...</span>
+								{/if}
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
-	<div class="mt-4 text-center">
-		<p class="text-muted-foreground text-sm">
-			Click on the terminal and type commands to explore my development approach
-		</p>
-		<p class="text-muted-foreground mt-1 text-xs">Use ↑↓ arrow keys to navigate command history</p>
+		{#if terminalMode === 'normal'}
+			<div class="animate-fade-in mt-4 text-center">
+				<p class="text-muted-foreground text-sm">
+					Click on the terminal and type commands to explore my development approach
+				</p>
+				<p class="text-muted-foreground mt-1 text-xs">
+					Use ↑↓ arrow keys to navigate command history
+				</p>
+			</div>
+		{:else if terminalMode === 'minimized'}
+			<div class="animate-fade-in mt-48 text-center">
+				<p class="text-muted-foreground text-sm">The terminal is minimized.</p>
+				<p class="text-muted-foreground mt-1 text-xs">Click on it or press Enter↵ to restore.</p>
+			</div>
+		{/if}
 	</div>
-</div>
+{/if}

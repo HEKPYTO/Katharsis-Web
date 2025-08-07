@@ -11,11 +11,14 @@
 		IconRocket,
 		IconHeart,
 		IconBrain,
-		IconBolt
+		IconBolt,
+		IconTerminal2
 	} from '@tabler/icons-svelte';
 
 	let projects = $state<GitHubRepository[]>([]);
 	let loading = $state(true);
+
+	let terminalMode = $state<'normal' | 'minimized' | 'maximized' | 'closed'>('normal');
 
 	$effect(() => {
 		loadProjects();
@@ -42,7 +45,7 @@
 
 <Hero />
 
-<section class="section-spacing bg-background">
+<section class="section-spacing bg-background relative z-20">
 	<div class="container-sketch">
 		<div class="space-y-12">
 			<div class="animate-fade-in max-w-2xl">
@@ -54,17 +57,36 @@
 			</div>
 
 			<div class="animate-fade-in-delayed">
-				<Terminal />
+				{#if terminalMode !== 'closed'}
+					<Terminal bind:terminalMode />
+				{:else}
+					<div class="mt-48 flex flex-col items-center justify-center">
+						<button
+							onclick={() => {
+								terminalMode = 'normal';
+							}}
+							class="group flex h-24 w-24 flex-col items-center justify-center rounded-xl bg-neutral-900 text-gray-400 shadow-[inset_0_2px_0_rgba(255,255,255,0.2),_0_4px_6px_rgba(0,0,0,0.6)] transition-all duration-150 hover:translate-y-[0.5px] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),_0_2px_4px_rgba(0,0,0,0.8)] focus:outline-none active:translate-y-[0.75px] dark:bg-neutral-100 dark:text-neutral-600 dark:shadow-[inset_0_2px_0_rgba(0,0,0,0.1),_0_4px_6px_rgba(255,255,255,0.3)] dark:hover:shadow-[inset_0_1px_0_rgba(0,0,0,0.15),_0_2px_4px_rgba(255,255,255,0.4)]"
+							aria-label="Re-open Terminal"
+						>
+							<IconTerminal2 class="h-10 w-10 transition-colors" />
+							<span
+								class="mt-2 text-xs transition-colors group-hover:text-gray-200 dark:group-hover:text-neutral-900"
+							>
+								Open
+							</span>
+						</button>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
 </section>
 
-<section class="section-spacing bg-muted/30">
+<section class="section-spacing bg-muted/30 relative z-10">
 	<div class="container-sketch">
 		<div class="space-y-12">
 			<div class="animate-fade-in max-w-2xl">
-				<div class="sketch-badge sketch-badge-prototype mb-4 animate-bounce">PORTFOLIO</div>
+				<div class="sketch-badge sketch-badge-prototype z-0 mb-4 animate-bounce">PORTFOLIO</div>
 				<h2 class="heading-lg text-foreground mb-6">Things I've built</h2>
 				<p class="text-muted-foreground text-lg leading-relaxed">
 					Here are some of the projects I've worked on. Each one taught me something new and helped

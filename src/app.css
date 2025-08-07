@@ -72,7 +72,6 @@ body {
 	font-family: var(--font-family-sans);
 }
 
-/* Headings */
 .heading-xl {
 	@apply font-serif text-5xl leading-tight font-normal tracking-tight md:text-6xl lg:text-7xl;
 }
@@ -89,7 +88,6 @@ body {
 	@apply font-serif text-2xl leading-tight font-normal tracking-tight md:text-3xl;
 }
 
-/* Sketch.com inspired backgrounds */
 .bg-sketch-hero {
 	background: linear-gradient(135deg, #fdf2f8 0%, #f3e8ff 50%, #e0e7ff 100%);
 }
@@ -98,7 +96,6 @@ body {
 	background: linear-gradient(135deg, #581c87 0%, #7c2d12 50%, #1e1b4b 100%);
 }
 
-/* Cards with proper dark mode support */
 .sketch-card {
 	@apply bg-card text-card-foreground overflow-hidden rounded-2xl border shadow-sm transition-all hover:shadow-lg;
 }
@@ -107,7 +104,6 @@ body {
 	@apply overflow-hidden rounded-2xl shadow-lg transition-all hover:shadow-xl;
 }
 
-/* Layout utilities */
 .container-sketch {
 	@apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
 }
@@ -116,12 +112,10 @@ body {
 	@apply py-16 md:py-24 lg:py-32;
 }
 
-/* Text styles */
 .text-balance {
 	text-wrap: balance;
 }
 
-/* Line clamp utility */
 .line-clamp-2 {
 	overflow: hidden;
 	display: -webkit-box;
@@ -129,7 +123,6 @@ body {
 	-webkit-line-clamp: 2;
 }
 
-/* Badge styles with proper dark mode */
 .sketch-badge {
 	@apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
 }
@@ -146,7 +139,6 @@ body {
 	@apply bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300;
 }
 
-/* Hide scrollbar */
 .scrollbar-hide {
 	scrollbar-width: none;
 	-ms-overflow-style: none;
@@ -156,12 +148,10 @@ body {
 	display: none;
 }
 
-/* Hide default input cursor */
 .caret-transparent {
 	caret-color: transparent;
 }
 
-/* Selection color - pastel purple */
 ::selection {
 	background-color: rgb(196 181 253 / 0.3);
 	color: rgb(88 28 135);
@@ -172,7 +162,6 @@ body {
 	color: rgb(233 213 255);
 }
 
-/* Custom Animations - SLOWED DOWN */
 @keyframes fadeInUp {
 	from {
 		opacity: 0;
@@ -248,7 +237,6 @@ body {
 	}
 }
 
-/* Animation Classes - SLOWED DOWN */
 .animate-fade-in-up {
 	animation: fadeInUp 1.2s ease-out forwards;
 }
@@ -286,7 +274,6 @@ body {
 	animation: gradientShift 5s ease infinite;
 }
 
-/* Hover Effects - SLOWED DOWN */
 .hover-lift {
 	transition: transform 0.5s ease-out;
 }
