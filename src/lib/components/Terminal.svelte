@@ -398,7 +398,7 @@
 			<div class="animate-fade-in mt-48 text-center">
 				<p class="text-muted-foreground text-sm">The terminal is minimized.</p>
 				<p class="text-muted-foreground mt-1 text-xs">
-					Click to restore the terminal this position.
+					Click to restore terminal to this position.
 				</p>
 			</div>
 		{/if}
