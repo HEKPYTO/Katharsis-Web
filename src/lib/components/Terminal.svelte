@@ -397,7 +397,7 @@
 		{:else if terminalMode === 'minimized'}
 			<div class="animate-fade-in mt-48 text-center">
 				<p class="text-muted-foreground text-sm">The terminal is minimized.</p>
-				<p class="text-muted-foreground mt-1 text-xs">Click on it or press Enter↵ to restore.</p>
+				<p class="text-muted-foreground mt-1 text-xs">Click to restore, or drag it out to open.</p>
 			</div>
 		{/if}
 	</div>
