@@ -116,7 +116,7 @@
 						class="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0"
 					>
 						<span class="text-muted-foreground text-sm">
-							© {currentYear} Kathayut Kannasoot. All rights reserved.
+							© {currentYear} Kathayut Kannasoot, HEKPYTO. All rights reserved.
 						</span>
 
 						<div class="flex items-center">
