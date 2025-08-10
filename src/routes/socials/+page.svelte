@@ -45,6 +45,25 @@
 		}
 	];
 
+	interface FormField {
+		id: string;
+		label: string;
+		component: 'input' | 'textarea';
+		type?: 'text' | 'email';
+		rows?: number;
+		required: boolean;
+	}
+
+	const formFields: FormField[] = [
+		{ id: 'name', label: 'Your Name', type: 'text', component: 'input', required: true },
+		{ id: 'email', label: 'Email Address', type: 'email', component: 'input', required: true },
+		{ id: 'subject', label: 'Subject', type: 'text', component: 'input', required: true },
+		{ id: 'message', label: 'Message', component: 'textarea', rows: 5, required: true }
+	];
+
+	const baseInputClass =
+		'border-input bg-background text-foreground focus:ring-ring w-full rounded-xl border px-4 py-3 transition-all focus:border-transparent focus:ring-2';
+
 	const handleSocialClick = (social: SocialLink): void => {
 		if (social.url === '#') {
 			alert(`Connect with me on ${social.name}: ${social.username}`);
@@ -89,13 +108,13 @@
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each socialLinks as social (social.name)}
 					<button
-						onclick={() => handleSocialClick(social)}
+						on:click={() => handleSocialClick(social)}
 						class="sketch-card group text-left transition-all duration-200 hover:shadow-lg"
 					>
 						<div class="space-y-4 p-6">
 							<div class="flex items-center space-x-4">
 								<div class="{social.color} rounded-xl p-3 text-white">
-									<social.icon class="h-6 w-6" />
+									<svelte:component this={social.icon} class="h-6 w-6" />
 								</div>
 								<div class="flex-1">
 									<h3 class="text-foreground font-semibold">{social.name}</h3>
@@ -105,10 +124,7 @@
 									class="text-muted-foreground group-hover:text-foreground h-4 w-4 transition-colors"
 								/>
 							</div>
-
-							<p class="text-muted-foreground text-sm leading-relaxed">
-								{social.description}
-							</p>
+							<p class="text-muted-foreground text-sm leading-relaxed">{social.description}</p>
 						</div>
 					</button>
 				{/each}
@@ -126,57 +142,51 @@
 					Have a project in mind or just want to chat? Give me a message!
 				</p>
 			</div>
-
 			<div class="animate-fade-in-delayed">
 				<div class="sketch-card mx-auto max-w-2xl">
 					<div class="space-y-6 p-8">
-						<form class="space-y-6" onsubmit={handleSubmit}>
+						<form class="space-y-6" on:submit={handleSubmit}>
 							<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+								{#each formFields.slice(0, 2) as field (field.id)}
+									<div class="space-y-2">
+										<label class="text-foreground text-sm font-medium" for={field.id}
+											>{field.label}</label
+										>
+										<input
+											class={baseInputClass}
+											type={field.type}
+											id={field.id}
+											placeholder=""
+											required={field.required}
+										/>
+									</div>
+								{/each}
+							</div>
+
+							{#each formFields.slice(2) as field (field.id)}
 								<div class="space-y-2">
-									<label class="text-foreground text-sm font-medium" for="name">Your Name</label>
-									<input
-										class="border-input bg-background text-foreground focus:ring-ring w-full rounded-xl border px-4 py-3 transition-all focus:border-transparent focus:ring-2"
-										type="text"
-										id="name"
-										placeholder="John Doe"
-										required
-									/>
-								</div>
-								<div class="space-y-2">
-									<label class="text-foreground text-sm font-medium" for="email"
-										>Email Address</label
+									<label class="text-foreground text-sm font-medium" for={field.id}
+										>{field.label}</label
 									>
-									<input
-										class="border-input bg-background text-foreground focus:ring-ring w-full rounded-xl border px-4 py-3 transition-all focus:border-transparent focus:ring-2"
-										type="email"
-										id="email"
-										placeholder="john@example.com"
-										required
-									/>
+									{#if field.component === 'input'}
+										<input
+											class={baseInputClass}
+											type={field.type}
+											id={field.id}
+											placeholder=""
+											required={field.required}
+										/>
+									{:else if field.component === 'textarea'}
+										<textarea
+											class="{baseInputClass} resize-none"
+											rows={field.rows}
+											id={field.id}
+											placeholder=""
+											required={field.required}
+										></textarea>
+									{/if}
 								</div>
-							</div>
-
-							<div class="space-y-2">
-								<label class="text-foreground text-sm font-medium" for="subject">Subject</label>
-								<input
-									class="border-input bg-background text-foreground focus:ring-ring w-full rounded-xl border px-4 py-3 transition-all focus:border-transparent focus:ring-2"
-									type="text"
-									id="subject"
-									placeholder="Let's collaborate on something amazing!"
-									required
-								/>
-							</div>
-
-							<div class="space-y-2">
-								<label class="text-foreground text-sm font-medium" for="message">Message</label>
-								<textarea
-									class="border-input bg-background text-foreground focus:ring-ring w-full resize-none rounded-xl border px-4 py-3 transition-all focus:border-transparent focus:ring-2"
-									rows="5"
-									id="message"
-									placeholder="Tell me about your project or just say hello..."
-									required
-								></textarea>
-							</div>
+							{/each}
 
 							<div class="text-center">
 								<Button

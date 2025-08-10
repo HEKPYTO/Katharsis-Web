@@ -20,6 +20,44 @@
 
 	let terminalMode = $state<'normal' | 'minimized' | 'maximized' | 'closed'>('normal');
 
+	const skills = [
+		{
+			icon: IconCode,
+			title: 'Model Development',
+			description:
+				'Builds and trains models to deliver accurate, meaningful predictions for real-world problems'
+		},
+		{
+			icon: IconPalette,
+			title: 'Data Analytics',
+			description:
+				'Skilled in Python, Spark, and Databricks to analyze large datasets and uncover actionable insights'
+		},
+		{
+			icon: IconRocket,
+			title: 'Modern Stack',
+			description:
+				'Applies the latest tools and frameworks for scalable, reproducible data science workflows'
+		},
+		{
+			icon: IconHeart,
+			title: 'Human-Centered Insights',
+			description:
+				'Translates complex data into intuitive insights to support decision-makers and end users'
+		},
+		{
+			icon: IconBrain,
+			title: 'Analytical Thinking',
+			description:
+				'Breaks down problems using data exploration, feature engineering, and statistical reasoning'
+		},
+		{
+			icon: IconBolt,
+			title: 'Performance Optimization',
+			description: 'Fine-tunes data pipelines and models for speed, efficiency, and scalability'
+		}
+	];
+
 	$effect(() => {
 		loadProjects();
 	});
@@ -150,141 +188,27 @@
 			</div>
 
 			<div class="stagger-animation grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				<div
-					class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
-				>
-					<div class="flex justify-center">
-						<div
-							class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
-						>
-							<IconCode
-								class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
-							/>
-						</div>
-					</div>
-					<h3
-						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
+				{#each skills as skill (skill.title)}
+					<div
+						class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
 					>
-						Model Development
-					</h3>
-					<p class="text-muted-foreground leading-relaxed">
-						Builds and trains models to deliver accurate, meaningful predictions for real-world
-						problems
-					</p>
-				</div>
-
-				<div
-					class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
-				>
-					<div class="flex justify-center">
-						<div
-							class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
-						>
-							<IconPalette
-								class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
-							/>
+						<div class="flex justify-center">
+							<div
+								class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
+							>
+								<skill.icon
+									class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
+								/>
+							</div>
 						</div>
-					</div>
-					<h3
-						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
-					>
-						Data Analytics
-					</h3>
-					<p class="text-muted-foreground leading-relaxed">
-						Skilled in Python, Spark, and Databricks to analyze large datasets and uncover
-						actionable insights
-					</p>
-				</div>
-
-				<div
-					class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
-				>
-					<div class="flex justify-center">
-						<div
-							class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
+						<h3
+							class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
 						>
-							<IconRocket
-								class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
-							/>
-						</div>
+							{skill.title}
+						</h3>
+						<p class="text-muted-foreground leading-relaxed">{skill.description}</p>
 					</div>
-					<h3
-						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
-					>
-						Modern Stack
-					</h3>
-					<p class="text-muted-foreground leading-relaxed">
-						Applies the latest tools and frameworks for scalable, reproducible data science
-						workflows
-					</p>
-				</div>
-
-				<div
-					class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
-				>
-					<div class="flex justify-center">
-						<div
-							class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
-						>
-							<IconHeart
-								class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
-							/>
-						</div>
-					</div>
-					<h3
-						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
-					>
-						Human-Centered Insights
-					</h3>
-					<p class="text-muted-foreground leading-relaxed">
-						Translates complex data into intuitive insights to support decision-makers and end users
-					</p>
-				</div>
-
-				<div
-					class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
-				>
-					<div class="flex justify-center">
-						<div
-							class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
-						>
-							<IconBrain
-								class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
-							/>
-						</div>
-					</div>
-					<h3
-						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
-					>
-						Analytical Thinking
-					</h3>
-					<p class="text-muted-foreground leading-relaxed">
-						Breaks down problems using data exploration, feature engineering, and statistical
-						reasoning
-					</p>
-				</div>
-
-				<div
-					class="sketch-card group space-y-4 p-8 text-center transition-all duration-700 hover:-translate-y-1 hover:scale-105 hover:shadow-lg"
-				>
-					<div class="flex justify-center">
-						<div
-							class="bg-muted group-hover:bg-primary/10 rounded-xl p-3 transition-all duration-700 group-hover:scale-110"
-						>
-							<IconBolt
-								class="text-muted-foreground group-hover:text-primary h-6 w-6 transition-colors duration-700"
-							/>
-						</div>
-					</div>
-					<h3
-						class="text-foreground group-hover:text-primary text-xl font-semibold transition-colors duration-700"
-					>
-						Performance Optimization
-					</h3>
-					<p class="text-muted-foreground leading-relaxed">
-						Fine-tunes data pipelines and models for speed, efficiency, and scalability
-					</p>
-				</div>
+				{/each}
 			</div>
 		</div>
 	</div>
